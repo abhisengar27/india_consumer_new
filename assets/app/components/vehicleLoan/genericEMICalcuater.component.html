@@ -1,0 +1,68 @@
+<div class="wrapper">
+	<oao-header></oao-header>
+	<!-- Page Content -->
+	<div class="page-content-info">
+		<div class="custom-genericEMI-info-bg">
+			<div class="container">
+				<h1 class="page-title">EMI CALCULATION</h1>
+			</div>
+		</div>
+        <br>
+		<div class="row custom-genericEMI-row">
+			<div class="col-sm-5 custom-emi-left-div">
+				<label for="Loan Amount">Loan amount : ₹ {{this.ShowloanAmountRange}} </label>
+				<input (change)="onChangeLoanAmount($event.target.value)" class="custom-emi-input" type="range" id="loanAmountRange" min="100000"
+					value="300000" max={{model1.loan_eligible_amount}} step="5000" [(ngModel)]="model.loanAmountRange" />
+				<small class="pull-left custom-emi-small">₹ 1,00,000.00</small>
+				<small class="pull-right custom-emi-small">₹ {{this.Showloan_eligible_amount}}</small>
+				<br>
+				<label for="Loan Term">Loan term (in years): {{model.loanTermRange}} </label>
+				<input (change)="onChangeLoanTerm($event.target.value)" class="custom-emi-input" id="loanTermRange" type="range" min="1"
+					max="7" step="1" [(ngModel)]="model.loanTermRange" />
+				<div class="row" style="margin:5px">
+					<small class="pull-left custom-emi-small">1</small>
+					<small class="pull-right custom-emi-small">7</small>
+				</div>
+                <br>
+                <label for="Loan Term">{{"EMI_CALCULATOR.Interest_Rate_gen" | translate}} {{model.loanInterestRange}} % p.a</label>
+                <input (change)="onChangeIntrest($event.target.value)" type="range" id="loanInterestRange" min="6" max="20" step="0.5" [(ngModel)]="model.loanInterestRange" />
+                <div class="row" style="margin:5px">
+                    <small class="pull-left custom-emi-small">6% p.a</small>
+                    <small class="pull-right custom-emi-small">20% p.a</small>
+                </div>
+				<br>
+				<label for="Monthly EMI">Monthly EMI : ₹ {{ShowmonthlyEmiRange}} </label>
+				<input (change)="onChangeMonthlyEmi($event.target.value)" class="custom-emi-input" id="monthlyEmiRange" type="range" min="{{model1.min_emi}}"
+					max={{model1.max_emi}} [(ngModel)]="model.monthlyEmiRange" />
+				<small class="pull-left custom-emi-small">₹ {{ShowMinEmi}}</small>
+				<small class="pull-right custom-emi-small">₹ {{ShowMaxEmi}}</small>
+				<br>
+			</div>
+			<div class="col-sm-4 custom-emi-center-div">
+				<p class="custom-emi-p" for="emi">{{"EMI_CALCULATOR.MONTHLY_EMI" | translate}}</p>
+				<h3>₹ {{ShowmonthlyEmiRange}}</h3>
+				<hr>
+				<p class="custom-emi-p" for="interestPaid">{{"EMI_CALCULATOR.TOTAL_INTEREST_PAYABLE" | translate}}</p>
+				<h3>₹ {{ShowinterestPayable}}</h3>
+				<hr>
+				<p class="custom-emi-p" for="totalPayment">{{"EMI_CALCULATOR.TOTAL_PAYMENT" | translate}}</p>
+				<h3>₹ {{ShowtotalPayableAmount}}</h3>
+			</div>
+			<div class="col-sm-3">
+				<div *ngIf="showChart" style="display: block;width: 250px; height:250px;">
+					<canvas baseChart [data]="pieChartData" [colors]="lineChartColors" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+						(chartClick)="chartClicked($event)"></canvas>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			<div class="form-btn-wrapper">
+				<button type="submit" (click)="clear()" class="btn btn-form-primary" data-style="expand-right">{{"EMI_CALCULATOR.BACK_TO_HOME" | translate}}</button>
+			</div>
+		</div>
+	</div>
+	<!-- //Page Content -->
+</div>
+<oao-footer></oao-footer>

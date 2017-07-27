@@ -1,0 +1,32 @@
+<div id="addressProof">
+    <div class="row">
+        <div class="col-md-9 col-sm-9 col-xs-9">
+            <div *ngFor="let file of uploadedFiles" style="position: relative;">
+                <a id="removeAddrProof" href="javascript:void(0);" (click)="removeUploadedAddr(file) " style="z-index:60; position:absolute; right: 1%;top: 1%;background-color:white;" title="Remove uploaded file"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+                <img id="{{file}}" style="width:100%;margin-bottom:10px;height:190px; " src="{{baseUrl}}/{{model.application_id}}/{{docType}}/{{file}}">
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-9 col-sm-9 col-xs-9 custom-dropzone-margin">
+            <a [hidden]="!isDigilockerFetching" href="javascript:void(0);" (click)="cancelUploding()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;" title="Cancle Uploding"><span class="glyphicon glyphicon-edit"></span></a>
+            <img [hidden]="!isDigilockerFetching" src="/assets/images/uploading_doc.gif " style="width:120px;margin-top:5%;margin-left:25% ">
+            <div [hidden]="isDigilockerFetching || hideDropBox" class="custom-dropzone">
+                <a title="Close" id="closeAddrDropBox" class="pull-right dropbox-remove" href="javascript:void(0);" (click)="removeAddrDropBox() "><span class="glyphicon glyphicon-remove text-danger "></span></a>
+                <dropzone id="addrProofDropBox" (removedfile)="removeFile($event)" (addedfile)="fileAdded()" (success)="successUpload($event)" [config]="config" [message]="uploadAddrMsg">
+                </dropzone>
+            </div>
+        </div>
+        <div title="Upload from digilocker" id="addrProofDigilocker" class="col-md-3 col-sm-3 col-xs-3" [hidden]="isDigilockerFetching || hideDropBox || hideDigilocker">
+            <div class="share_fm_dl_sm " id="attachment_poi ">
+            </div>
+        </div>
+
+    </div>
+    <div id="addAnotherDoc2" class="row col-md-9 col-sm-9 col-xs-9">
+        <a (click)="addAddrProof()" href="JavaScript:void(0);" class="pull-right custom-add-row "><span class="glyphicon glyphicon-plus-sign "></span> {{'UPLOAD_DOCS.ADD_DOC' | translate}}</a>
+    </div>
+</div>

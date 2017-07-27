@@ -1,0 +1,47 @@
+<!-- header -->
+<header class="header">
+    <nav class="navbar" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-menu"> <span class="sr-only">Toggle
+                     navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" [routerLink]="['/home']" (click)="clear()">
+                    <img id="brandLogo" src="/assets/images/empower_logo.png" alt="Empower">
+                </a>
+            </div>
+            <div class="collapse navbar-collapse primary-nav" id="main-menu">
+                <ul class="nav navbar-nav">
+                    <li class="active navbar-custom"><a [routerLink]="['/home']" (click)="clear()">{{ 'HOME.Header_home' | translate }}</a></li>
+                    <!--<li class="navbar-custom"><a href="#">{{ 'HOME.Header_About' | translate }}</a></li>-->
+                    <li class="dropdown navbar-custom">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'HOME.Header_Products' | translate }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a [routerLink]="['/home']" (click)="clear()">{{ 'HOME.Header_Products_type_1' | translate }}</a></li>
+                            <li><a [routerLink]="['/home']" (click)="clear()">{{ 'HOME.Header_Products_type_2' | translate }}</a></li>
+                            <li><a [routerLink]="['/home']" (click)="clear()">{{ 'HOME.Header_Products_type_3' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li class="navbar-custom"><a [routerLink]="['/genericEMICalcuater']">{{ 'HOME.EMI_CALCULATOR' | translate }}</a></li>
+                    <!--<li class="navbar-custom"><a href="#">{{ 'HOME.Header_Contact_Us' | translate }}</a></li>-->
+                    <li class="navbar-custom"><a href="#" data-toggle="modal" data-target="#resume-modal">{{ 'HOME.Header_Resume_application' | translate }} </a></li>
+                    <li class="dropdown navbar-custom">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ 'HOME.SELECT' | translate }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <ul class="dropdown-menu">
+                            <li *ngFor="let lang of translate.getLangs()"><a href="javascript:void(0)" (click)="translate.use(lang); changeLang(lang);">{{ lang }}</a></li>
+                        </ul>
+                    </li>
+
+                    <!--<li class="navbar-custom"><label>
+                        {{ 'HOME.SELECT' | translate }}
+                        <select #langSelect (change)="translate.use(langSelect.value)">
+                        <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang }}</option>
+                        </select></label>
+                   </li>-->
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+</header>

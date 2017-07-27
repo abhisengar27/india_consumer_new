@@ -1,0 +1,67 @@
+<div class="contact-info" data-aos="fade-up">
+
+    <!-- chooseEmployer  -->
+    <div class="account-content " id="acc-cont">
+        <h2 style="padding-bottom: 5%;">{{ 'employerDetails.chooseEmployer' | translate }}</h2>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <input placeholder="Select your Employer" class="form-control txtbox" id="country" type="text" [(ngModel)]="query" (keyup)="filter()">
+                <div *ngIf="filteredList.length > 0" id="employers" style="max-height: 150px;overflow-y: scroll;">
+                    <ul id="em-ul" *ngFor="let item of filteredList">
+                        <li style="list-style-type: none">
+                            <div id="p-default" class="panel panel-default">
+                                <div (click)="select(item)" id="p_body" class="panel-body"><strong>{{item}}</strong></div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+        </div>
+
+    </div>
+    <!-- /chooseEmployer -->
+
+    <div [hidden]="!upsell_flag" class="row">
+        <div class="col-md-2 col-lg-2 col-sm-2">
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-8">
+            <div style="margin-bottom:20px;">
+                <div class="existing-member-login ">
+                    <div style="width: 71%;" class="info-alert center-msg ">
+                        <div class="alert-msg "><small>{{'employerDetails.error_message' | translate}}</small>
+                            <br><small>{{'employerDetails.saving_message' | translate}}</small>
+                        </div>
+                        <div class="clearfix "> </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4 col-sm-0">
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <button id="ap-btn" type="submit" tabindex="0" (click)="onUpsell('BNA')" class="btn btn-form-primary ladda-button" data-dismiss="modal"
+                        data-style="expand-right" data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_Apply'|translate }}</span></button>
+                </div>
+                <div class="col-md-4  col-sm-0">
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-2">
+        </div>
+    </div>
+
+    <div [hidden]="upsell_flag" class="form-btn-wrapper" style="margin-right: 60px;">
+        <a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+        <button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+            [disabled]="!disable_btn_flag" data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_continue'|translate }}</span></button>
+    </div>
+
+
+</div>

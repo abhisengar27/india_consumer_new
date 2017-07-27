@@ -1,0 +1,37 @@
+<div class="wrapper">
+	<oao-header></oao-header>
+	<!-- Page Content -->
+	<div class="page-content-info">
+		<div class="info-bg">
+			<div class="container">
+				<h1 class="page-title">Vehicle loan</h1>
+				<!--<h1 class="page-title">{{'PRODUCT_TYPE.SAL' | translate}}</h1>-->
+			</div>
+		</div>
+		<div class="page-card">
+			<div class="number-progress-bar" id="progressBar">
+
+
+				<div class="horizontal-step-nav">
+					<ul>
+						<li [style.width.%]="constWidth" *ngFor="let configData of progressBarConfig | objectToArray; let i = index" [ngClass]="stepStatus[i]"><span class="stepvalue">{{configData.value}}</span><span class="stepvalue-hidden"><img src="/assets/images/tick.svg" alt=""></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="contact-info" data-aos="fade-up">
+				<!-- single or joint -->
+				<div class="account-content " id="1">
+					<h2>{{ 'CARLOAN.TITLE' | translate }}</h2>
+					<input type="submit" (click)="loanType('New Car')" class="btn btn-default button button3" id="button1" value="{{ 'CARLOAN.CARLOAN_NEWCAR_BUTTON' | translate }}"/>
+					<input type="submit"  (click)="loanType('Refinance')"class="btn btn-default button button3" id="button2" value="{{ 'CARLOAN.CARLOAN_REFINANCE_BUTTON' | translate }}"/>
+				</div>
+				<!-- /single or joint -->
+
+			</div>
+			<!-- //basic-info -->
+		</div>
+	</div>
+	<!-- //Page Content -->
+
+</div>
+<oao-footer></oao-footer>

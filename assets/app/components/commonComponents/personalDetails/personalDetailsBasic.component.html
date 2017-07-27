@@ -1,0 +1,283 @@
+<div data-aos="fade-up">
+    <h3 class="card-title">{{ 'PERSONALBASICINFO.CARD_TITLE' | translate }}
+        <span class="enble-joint">
+                  <a href="basic-information-joint.html">
+                  {{ 'PERSONALBASICINFO.ENABLE_JOINT_APPLICANT_LINK' | translate }}
+                  </a>
+                  </span>
+    </h3>
+    <!-- basic-info -->
+    <div class="basic-info">
+        <h6 class="form-heading">{{ 'PERSONALBASICINFO.FORM_HEADING' | translate }}</h6>
+        <form (ngSubmit)="onSaveContinue(model.mobile, model.email)">
+            <div class="row">
+                <div class="col-md-4 col-sm-6 has-min-height-106">
+                    <div [ngClass]="{'form-group has-success has-feedback':(fname.valid && (fname.dirty || (model.title != '0' && model.is_aadhaar) )) }">
+                        <div [ngClass]="{'form-group has-error has-feedback':(fname.invalid && fname.dirty )}">
+                            <label for="fname" class="form-label">{{ 'PERSONALBASICINFO.FIRST_NAME' | translate }}</label>
+                            <div class="input-group">
+                                <div class="input-group-btn">
+                                    <select class="form-control txtbox" id="title" [(ngModel)]="model.title" name="title" #title="ngModel">
+                                          <option value="0" >{{ 'PERSONALBASICINFO.TITLE' | translate }}</option>
+                                          <option *ngFor="let details of items" [ngValue]= "details"  >
+                                                  {{details}} 
+                                       </option>
+                                    </select>
+                                </div>
+                                <!-- /btn-group -->
+                                <input type="text" class="form-control txtbox" [(ngModel)]="model.fname" id="fname" name="fname" #fname="ngModel" nameValidate>
+                                <span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(fname.valid && model.title !='0')}"></span>
+                                <span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(fname.invalid && fname.dirty)}"></span>
+                            </div>
+                            <small [hidden]="!((fname.valid && (fname.dirty || model.is_aadhaar) ) && model.title=='0')" class="text-danger">
+                            {{configMsg?.title}} 
+                                </small>
+                            <small [hidden]="fname.valid || fname.pristine || model.fname==null || model.fname==''" class="text-danger">
+                                {{configMsg?.name}} <!--This is a required field and Can contain letters and apostrophe-->
+                                </small>
+                        </div>
+                        <!-- /input-group -->
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-sm-6 has-min-height-106">
+
+                    <div [ngClass]="{'form-group has-success has-feedback':(mname.valid && (mname.dirty || model.is_aadhaar)) }">
+                        <div [ngClass]="{'form-group has-error has-feedback':(mname.invalid && mname.dirty && (!model.mname==''))}">
+                            <label for="mname" class="form-label">{{'PERSONALBASICINFO.MIDDLE_NAME' |translate}}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control txtbox" [(ngModel)]="model.mname" id="mname" name="mname" #mname="ngModel" nameValidate>
+                                <span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(mname.valid)}"></span>
+                                <span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(mname.invalid && mname.dirty && (!model.mname==''))}"></span>
+                            </div>
+                            <small [hidden]="mname.valid || mname.pristine || model.mname==null || model.mname==''" class="text-danger">
+                                {{configMsg?.mname}} <!--This is a required field and Can contain letters and apostrophe-->
+                                </small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6 has-min-height-106">
+                    <div [ngClass]="{'form-group has-success has-feedback':(lname.valid && (lname.dirty || model.is_aadhaar) ) }">
+                        <div [ngClass]="{'form-group has-error has-feedback':(lname.invalid && lname.dirty )}">
+                            <label for="lname" class="form-label">{{'PERSONALBASICINFO.LAST_NAME'|translate}}</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control txtbox" [(ngModel)]="model.lname" id="lname" name="lname" #lname="ngModel" nameValidate>
+                                <span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(lname.valid)}"></span>
+                                <span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(lname.invalid && lname.dirty)}"></span>
+                            </div>
+                            <small [hidden]="lname.valid || lname.pristine || model.lname==null || model.lname==''" class="text-danger">
+                                {{configMsg?.name}} <!--This is a required field and Can contain letters and apostrophe-->
+                                </small>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-md-4 col-sm-6 has-min-height-106">
+                    <!--<input type="hidden" required="required" value=""  [(ngModel)]="model.app_id" name="app_id" #app_id="ngModel" />-->
+                    <div class="form-group">
+                        <div [ngClass]="{'form-group has-success has-feedback':(email.valid && email.dirty) }">
+                            <div [ngClass]="{'form-group has-error has-feedback':(email.invalid && email.dirty)}">
+                                <label for="email" class="form-label">{{'PERSONALBASICINFO.EMAIL_ID'|translate}}</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><img class="custom-glyphicon" src="/assets/images/email_id.png"></span>
+                                    <input type="email" (keyup)="changeCallMatchingCustomerFlag()" class="form-control txtbox saveInfo" id="email" [(ngModel)]="model.email" placeholder="name@email.com" name="email" #email="ngModel" emailValidator>
+                                    <span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(email.valid && email.dirty)}"></span>
+                                    <span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(email.invalid && email.dirty)}"></span>
+                                </div>
+
+                                <small [hidden]="email.valid || (email.pristine )" class="text-danger">
+                               {{configMsg?.email}}  <!--This is a required field or Enter in abc@xyz.com format -->
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-sm-6 has-min-height-106">
+                    <div class="form-group">
+                        <div [ngClass]="{'form-group has-success has-feedback':(mobile.valid && mobile.dirty) }">
+                            <div [ngClass]="{'form-group has-error has-feedback':(mobile.invalid && mobile.dirty)}">
+
+                                <label for="mobile" class="form-label">{{'PERSONALBASICINFO.MOBILE_NUMBER'|translate}}</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon" id="basic-addon1"> <img class="custom-glyphicon" src="/assets/images/mobile.png"></span>
+                                    <input type="text" (keyup)="changeCallMatchingCustomerFlagMobile($event)" class="form-control txtbox saveInfo" [(ngModel)]="model.mobile" #mobile="ngModel" id="mobile" value="+(91)- " placeholder="XXXXXXXXXX" name="mobile" mobValidator>
+                                </div>
+                                <span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(mobile.valid && mobile.dirty)}"></span>
+                                <span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(mobile.invalid && mobile.dirty)}"></span>
+                                <small [hidden]="mobile.valid || (mobile.pristine )" class="text-danger">
+                                          {{configMsg?.mobile}}   <!--This is a required field  -->
+                              </small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div id="dob" class="col-md-4 col-sm-6 has-min-height-106">
+                    <label for="mobile" class="form-label">{{'PERSONALBASICINFO.DATE_OF_BIRTH' | translate}}</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><img class="custom-glyphicon" src="/assets/images/DateOfBirth.png"></span>
+                        <input type="date" value="model.dob" class="form-control txtbox" [max]="maxDate" placeholder="MM/DD/YYYY" name="dob" id="dob" [(ngModel)]="model.dob">
+                    </div>
+                </div>
+            </div>
+            <div class="form-btn-wrapper test-top">
+                <a tabindex="-1" (click)="moveBack()" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" tabindex="0"> </a>
+                <!--<a tabindex="0" class="btn btn-form-primary ladda-button" data-style="expand-right" id="basicInfoSubmit" ><span class="ladda-label">SAVE & CONTINUE</span></a>-->
+                <button type="submit" tabindex="0" class="btn btn-form-primary" [ladda]="isLoading" data-style="expand-right" data-spinner-color="white" [disabled]="!fname.valid || model.dob=='' || !lname.valid || model.title=='0'||model.dob==null ||!email.valid||!mobile.valid"><span class="ladda-label">{{'PERSONALBASICINFO.SAVE&CONTINUE'|translate}}</span></button>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+<div id="matching-customer-modal" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="matching-customer-des">
+                    <button (click)="laddaclose()" type="button" class="close address-info" data-dismiss="modal"><img src="/assets/images/close.svg" alt=""></button>
+                    <div class="center-content">
+                        <span class="info-icon"><img src="/assets/images/info.svg" alt=""></span>
+                        <h2>Matching customer <br> details found!
+                        </h2>
+                        <div class="existing-member-login">
+                            <div class="error-alert  user-match">
+                                <div class="alert-msg matchingmember"> {{wrn_001}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <a [routerLink]="['/login']" class="btn btn-secondary" data-dismiss="modal">CLICK TO LOGIN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="success" class="modal fade " role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="success-modal">
+
+                    <div class="center-content">
+                        <span class="info-icon successicon"><img src="/assets/images/success.svg" alt=""></span>
+                        <h2>{{'PERSONALBASICINFO.APPLICATION' | translate}} <br/> {{'PERSONALBASICINFO.SUCCESS_SAVED' | translate}}
+                        </h2>
+                        <p class="cust-id">{{'PERSONALBASICINFO.APPLICATION_REFERENCE' | translate}} : <strong>{{model.application_id}}</strong></p>
+                        <div class="existing-member-login">
+                            <div class="info-alert  center-msg">
+                                <div class="alert-msg"> {{'INFO_MESSAGE.INF_001' | translate}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-btn-wrapper">
+
+                            <button (click)="setForwardProgressData()" class="btn btn-form-primary address-info" [routerLink]="['../personalContactInfo']" data-dismiss="modal"> CONTINUE </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--OTP generation and verfication - Email - India-->
+
+<div id="emailOtp" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-align modal-otp-pop">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <h4>{{'PERSONALBASICINFO.EMAIL_OTP_HEADING' | translate}}</h4>
+            <div class="modal-body row custom-otp-modal-body">
+                <button (click)="laddaclose()" type="button" class="close otp-btn-close custom-delete" data-dismiss="modal">
+                    <!--<img src="/assets/images/close.svg" alt="">-->&times;
+                </button>
+                <div class="matching-customer-des">
+                    <div class="center-content">
+                        <div class="otp-div col-md-4">
+                            <div class="info-alert  center-msg">
+                                <div class="alert-msg">
+                                    <small>{{'PERSONALBASICINFO.EMAIL_OTP_MSG'|translate}}</small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <br/>
+                            <form class="form-group">
+                                <div class="form-group">
+                                    <input type="text" [(ngModel)]="newverifyEmailOtp" class="form-control otp-txtbox" id="verifyEmailOtp" #verifyEmailOtp name="newverifyEmailOtp" placeholder="Enter the OTP received to your email id" required />
+                                </div>
+                                <div class="form-group">
+                                    <small [hidden]="this.toggle==undefined || this.toggle!=false" class="text-danger">{{'PERSONALBASICINFO.EMAIL_OTP_ERROR_MSG'|translate}}</small>
+                                    <button type="submit" (click)="onVerifyEmailOtp(verifyEmailOtp.value)" class="btn btn-default btn-login ladda-button otp-button" data-style="expand-right" [disabled]="newverifyEmailOtp==null" id="verifySubmit"><span class="ladda-label" name="verifySubmit">{{'PERSONALBASICINFO.VERIFY_OTP_BUTTON'|translate}}</span>
+                                    </button>
+                                    <p *ngIf="resend==false">{{'PERSONALBASICINFO.RESEND_OTP_IN'|translate}}{{emailTicks}}</p>
+                                    <p *ngIf="resend==true"><a (click)="onResendOtpForEmail(model.email)">{{'PERSONALBASICINFO.RESEND'|translate}}</a>{{'PERSONALBASICINFO.OTP_IN'|translate}}{{emailTicks}}</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--OTP generation and verfication - Mobile - India-->
+
+
+<div id="mobileOtp" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-align modal-otp-pop">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <h4>{{'PERSONALBASICINFO.MOBILE_OTP_HEADING' | translate}}</h4>
+            <div class="modal-body row custom-otp-modal-body">
+                <button (click)="laddaclose()" type="button" class="close otp-btn-close custom-delete" data-dismiss="modal">
+                    <!--<img src="/assets/images/close.svg" alt="">-->&times;
+                </button>
+                <div class="matching-customer-des">
+                    <div class="center-content">
+                        <div class="otp-div col-md-4">
+                            <div class="info-alert  center-msg">
+                                <div class="alert-msg">
+                                    <small>{{'PERSONALBASICINFO.MOBILE_OTP_MSG'|translate}}</small>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <br/>
+                            <form class="form-group">
+                                <div class="form-group">
+                                    <input type="text" [(ngModel)]="newVerifyMobileOtp" class="form-control txtbox" id="verifyMobileOtp" #verifyMobileOtp name="newVerifyMobileOtp" placeholder="Enter the OTP received to your mobile number" required>
+                                </div>
+                                <div class="form-group">
+                                    <small [hidden]="this.toggle==undefined || this.toggle!=false" class="text-danger">{{'PERSONALBASICINFO.EMAIL_OTP_ERROR_MSG'|translate}}</small>
+                                    <button type="submit" (click)="onVerifyMoibleOtp(verifyMobileOtp.value)" class="btn btn-default btn-login ladda-button otp-button" data-style="expand-right" [disabled]="newVerifyMobileOtp==null" id="verifySubmit"><span class="ladda-label" name="verifySubmit">{{'PERSONALBASICINFO.VERIFY_OTP_BUTTON'|translate}}</span>
+                                    </button>
+                                    <p *ngIf="resend==false">{{'PERSONALBASICINFO.RESEND_OTP_IN'|translate}}{{mobileTicks}}</p>
+                                    <p *ngIf="resend==true"><a (click)="onResendOtpForMobile(model.mobile)">{{'PERSONALBASICINFO.RESEND'|translate}}</a>{{'PERSONALBASICINFO.OTP_IN'|translate}}{{mobileTicks}}</p>
+                                </div>
+
+                            </form>
+
+                            <!--<input type="hidden" class="form-control txtbox" id="app_id" #app_id value=appRef.value name="app_id">-->
+
+                        </div>
+
+                        <!--<div *ngIf="ticks<60 || resend==true">
+
+                        </div>-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

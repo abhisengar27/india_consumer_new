@@ -1,0 +1,235 @@
+<div class="contact-info" data-aos="fade-up">
+    <!-- single or joint -->
+    <div id="AADHAAR_INFO">
+        <div class="row">
+            <!--<div [hidden]="!model.aadhar=='' || !model.aadhar==null" class="alert alert-success fade">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                <strong>Thanks for your Aadhaar copy,</strong>we will read and populate your aadhaar number
+            </div>-->
+            <div class="col-md-6 custom-or-border">
+
+                <div class="row col-md-12">
+                    <div class="col-md-8 col-sm-6 col-xs-8" id="dropboxArea">
+                        <label class="form-label">{{ 'AADHAAR_INFO.left_heading' | translate }}</label>
+                        <div [hidden]="isManualUpload" id="sharedImage">
+                            <a [hidden]="isDigilockerFetching" href="javascript:void(0);" (click)="removeFile()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;" title="Change uploaded file"><span class="glyphicon glyphicon-edit"></span></a>
+                            <img [hidden]="isDigilockerFetching" src="{{baseUrl}}/{{appId}}/{{docType}}/{{uploadedFileName}}" style="width:100%;margin-bottom:10px;height:190px;">
+                            <a [hidden]="!isDigilockerFetching" href="javascript:void(0);" (click)="cancelUploding()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;" title="Cancle Uploding"><span class="glyphicon glyphicon-edit"></span></a>
+                            <img [hidden]="!isDigilockerFetching" src="/assets/images/Details_fetching_aadhaar.gif" style="width:120px;margin-top:5%;margin-left:25%">
+                        </div>
+                        <div id="aadhaarDropBox" [hidden]="!isManualUpload">
+
+                            <dropzone (removedfile)="removeFile($event)" (addedfile)="clicked()" (success)="aadhaarDetails($event)" [config]="config" [message]="uploadAadhaarMsg"></dropzone>
+                        </div>
+
+                    </div>
+                    <div title="Upload from digilocker" id="thirdPartyUpload" class="col-md-4 col-sm-4 col-xs-4" style="top:25px !important;margin-bottom:20px !important;">
+                        <div class="share_fm_dl_sm" id="attachment_poi">
+                        </div>
+                    </div>
+                </div>
+                <hr class="custom-or-hr">
+                <div id="aadharOr" class="custom-or-style">
+                    <p>or</p>
+                </div>
+            </div>
+            <div class="col-md-5 col-md-offset-1">
+                <div class="row col-md-12" style="margin-bottom:20px;">
+                    <!--<p>{{aadhar}}</p>-->
+                    <label id="giveAadhaar" [hidden]="aadhar_togle_msg" class="form-label">{{ 'AADHAAR_INFO.right_heading' | translate }}</label>
+                    <label id="changedText" [hidden]="!aadhar_togle_msg" class="form-label">{{'AADHAAR_INFO.toggle_right_heading' | translate}}</label>
+                    <input id="aadhaarInput" type="text" [(ngModel)]="model.aadhar" (keyup)="aadhaar_msg()" name="aadhaarInput" class="txtbox" placeholder="XXXXXXXXXXXX" />
+                </div>
+                <div [hidden]="!otpFlag || model.aadhar=='' || model.aadhar==null" class="row col-md-12" style="margin-bottom:20px;">
+                    <div class="existing-member-login">
+                        <div class="info-alert center-msg">
+                            <div class="alert-msg"><small>{{ 'AADHAAR_INFO.otp_msg' | translate }}</small>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="uploaingMsg" [hidden]="!uploadmsg" class="row col-md-12" style="margin-bottom:20px;">
+                    <div class="existing-member-login">
+                        <div class="info-alert center-msg">
+                            <div class="alert-msg"><small>{{ 'AADHAAR_INFO.ocr_msg' | translate }}</small>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="docError" [hidden]="!(doc_erroe) || !model.aadhar=='' || !model.aadhar==null" class="row col-md-12" style="margin-bottom:20px;">
+                    <div class="existing-member-login">
+                        <div class="info-alert center-msg">
+                            <div class="alert-msg"><small>{{ 'AADHAAR_INFO.OCR_DOC_ERROR' | translate }} </small>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div id="showCheckbox" class="row col-md-12" [hidden]="model.aadhar=='' || model.aadhar==null || model.aadhar==undefined || toggleCheckbox">
+                        <div>
+                            <!--<input class="checkboxStyled" type="checkbox" [(ngModel)]="model.checkBox" name="checkBox" id="checkBox" value="">-->
+                            <input id="postalCheckBtn" class="styled" type="checkbox" [(ngModel)]="model.checkBox">
+                            <small style="color:#000000" class="text-info">{{ 'AADHAAR_INFO.checkbox_msg' | translate}}&nbsp;&nbsp;<a title="{{ 'AADHAAR_INFO.terms_and_conditions' | translate}}" href="javascript:void(0)" target="_blank" (click)="viewTermsAndConditions()"><i class="fa fa-file-text-o" style="font-size:15px;color:#044b8a"></i> </a></small>
+                            <!--<div class="row">
+                                <a href="" target="_blank" (click)="viewTermsAndConditions()">Full terms and conditions</a>
+                            </div>-->
+                        </div>
+                        <br>
+                    </div>
+                </div>
+
+                <!--<div class="form-group">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="checkbox">
+                                <input id="postalCheckBtn" class="styled" type="checkbox" [(ngModel)]="model.postal_home_address_flag" name="postal_home_address_flag"
+                                    #postal_home_address_flag="ngModel" [checked]="checked">
+                                <label for="postalCheckBtn">{{'PERSONALCONTACTINFO.CHECK_BOX'|translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div id="generateAadhaarOtp" class="row">
+                    <div class="col-md-5 col-sm-6" [hidden]="model.aadhar=='' || model.aadhar==null || model.aadhar==undefined">
+                        <button style="width:100%" type="submit" [ladda]="generatingOTP" data-size="s" data-style="expand-right" data-spinner-color="white" [disabled]="model.aadhar==''|| model.aadhar==null || ticks!=60 || !model.checkBox" (click)="onSearch()" class="btn btn-form-primary btn-custom-primary"
+                            data-style="expand-right" id="searchSubmit"><span class="ladda-label" name="serchSubmit" >{{generateOTP}}</span></button>
+                        <p *ngIf="ticks<60 || resend==true" style="width: 200px;">{{ 'AADHAAR_INFO.resend_otp_text' | translate }}{{ticks}}</p>
+                    </div>
+
+                    <div [hidden]="!otpFlag || model.aadhar=='' || model.aadhar==null || model.aadhar==undefined" class="col-md-6 col-sm-6">
+                        <input type="text" class="txtbox" [(ngModel)]="verifyOtp" name="verifyOtp" placeholder="Enter received OTP">
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+                <br>
+            </div>
+
+            <input type="hidden" class="form-control txtbox" id="app_id" #app_id value=appRef.value name="app_id">
+            <div class="row col-md-4 col-md-offset-4" style="margin-top:10px;">
+                <a tabindex="-1" (click)="moveBack()" [routerLink]="['../aadharCheck']" class="btn btn-icon-back-in-pan"> <img src="/assets/images/back-icon.svg" alt="back-icon" tabindex="0"> </a>
+                <button tabindex="0" [disabled]="(verifyOtp=='' || verifyOtp==null) && !model.isAadhaarValidated" [ladda]="isLoading" data-style="expand-right" data-spinner-color="white" class="btn btn-form-primary" (click)="losSubmit()"><span class="ladda-label">{{ 'AADHAAR_INFO.Proceed_button' | translate }}</span></button>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<div id="TandC" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-pop">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title custom-modal-title">{{ 'AADHAAR_INFO.TERMS_AND_CONDITIONS_HEADING' | translate }}</h4>
+            </div>
+            <div class="modal-body modal-body-scroll">
+                <br>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_1' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_2' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_3' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_4' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_5' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_6' | translate}}</li>
+                <li><span style="font-weight:bold;">{{'AADHAAR_INFO.READ_TandC_LINE_7' | translate}}</span></li>
+                <li><span style="font-weight:600; text-decoration:underline;">{{'AADHAAR_INFO.READ_TandC_LINE_8' | translate}}</span></li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_9' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_10' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_11' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_12' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_13' | translate}}</li>
+                <li><span style="font-weight:bold;">{{'AADHAAR_INFO.READ_TandC_LINE_14' | translate}}</span></li>
+                <li><span style="font-weight:600; text-decoration:underline;">{{'AADHAAR_INFO.READ_TandC_LINE_15' | translate}}</span></li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_16' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_17' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_18' | translate}}</li>
+                <li>{{'AADHAAR_INFO.READ_TandC_LINE_19' | translate}}</li>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="Error" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-dialog-scroll">
+
+        <!-- Modal content-->
+        <div class="modal-content modalResize">
+            <div class="modal-header">
+                <!--<button type="button" (click)="removeFile($event)" class="close" data-dismiss="modal">&times;</button>-->
+                <a [hidden]="isDigilockerFetching" href="javascript:void(0);" (click)="removeFile()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;" title="Change uploaded file"><span class="glyphicon glyphicon-edit"></span></a>
+                <h4 class="modal-title custom-modal-title">Error</h4>
+            </div>
+            <div class="modal-body modal-body-scroll">
+                <span class="info-icon "><img src="/assets/images/broken.svg" alt=""></span>
+
+                <h4>Sorry we are not able to read your Aadhaar please upload valid Aadhar card.</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="DOC_Error" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="success-modal">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="center-content">
+                        <span class="info-icon "><img src="/assets/images/broken.svg" alt=""></span>
+
+                        <h4>Sorry, we are still improving. This time, we could not read your Aadhaar/PAN Number. Please enter it manually in the above text box to proceed.</h4>
+                        <div class="form-btn-wrapper">
+                            <!--<a [routerLink]="['/home']" class="regbtn" data-dismiss="modal" (click)="clear()">HOME</a> -->
+                            <a [hidden]="isDigilockerFetching" class="regbtn" href="javascript:void(0);" data-dismiss="modal" (click)="removeFile()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;" title="Change uploaded file"><span class="glyphicon glyphicon-edit">OK</span></a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="error" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="matching-customer-des">
+                    <button (click)="laddaclose()" type="button" class="close address-info" data-dismiss="modal"><img src="/assets/images/close.svg" alt=""></button>
+                    <div class="center-content">
+                        <span class="info-icon"><img src="/assets/images/info.svg" alt=""></span>
+                        <h4>Sorry we are not able to read your Aadhaar please upload valid Aadhar card.</h4>
+                        <div class="existing-member-login">
+                            <div class="error-alert  user-match">
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <a [routerLink]="['/login']" class="btn" data-dismiss="modal">CLICK TO LOGIN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="pageLoadingPanel" style="left:40%;top:50%;position:fixed">
+    <img src="/assets/images/loading_page.gif">
+</div>

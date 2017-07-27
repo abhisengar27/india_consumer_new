@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "oao-india",
+  "private_key_id": "4c7a856d75a5c308c3759ab97867b1a9bbddb149",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDRD0quDbaYx8xX\nNlHN8zRK/R+08mkmHm1zojuTEGdYx1KDAVyXkzqiX6dZTsmMc6LtZS3QVysxG6BO\n0fbdh2ui8wrjtcxQ2iRmEiS6UErpPUeeOSZ5dd5n8vZ6xMu6f/1wXqYQMqS2PmfP\nme2Bi1hdHsgqT4CGeJ3V7mHb/oTc+RI4x/Di51N57dbrQzG5dolyD4M5mDftetnJ\nqiNyJ3dR4nUKbgQbGUyAbx1V6yqqGwN1R4wq6v2R3/fdfP03NLlDjcIuNLJPzNUa\nRug0Llif8ad67g07apyPbb0WVQ/2pR1QjRrnCgf2CRu9Xh61/J0UXoK49GB85WOK\nGA1zmMFPAgMBAAECggEBAIUkYgFbhnDivgbE93BcdW9Uqb7Jq6G1OyurpJlSlx75\nQllgoqF+CJekp6W/AalLc/YQvA61lTJfT8ci/T+0oR5T/xlqjMbpRskiwPVPcYX9\nmwDvkMtF//Df0Y36i20pWjUYclZain/uWprig1o/bnVPx1b67vW1F4BJo1VCUUeQ\nyJ9JAKgMz+BckKbxR6XPCJY77HtW4v1lj88aYp97zRny3ZOPMoQFBtNOV7wWZ9tU\nZo9EGssFd0eU8j086u3At5ts2Q6mkV/04foY4qW4oNFEYaRjKnV408tlJTgFYeqz\nz9sATicVwlsKERPnNQUI9YzKZunY66kEVVkWZtEIFbECgYEA/6jwgAb5RRxXeOJy\nq4hz8yKSo0FiJOwIpPQeL3w3wGHjxVRGJ6fTILcIhfnG5P+EEdLYvj1YTb+j2Mnn\n/T5JemLgvK6hYoAp6AomS0YixVEjvzg9Acj6BVqsUPnpY9voiLJmEwIDI2QBpTg3\n9M+JKlakNuPPgZfQTlcAnSYiUE0CgYEA0VZ7vtJaRqn1gQK7BDpqKtG8U+KNNGgt\nyTMOjJNCDzM33aL3Itr7bEv88QRL/jZ01H17BaAkYU5WtH/qxQzBwBKi9acHRYQO\n0I+NO5NC+EpYE8Er8U1ZSbCGGGf4J4KKqaaUMzaQ8veMWcQ2Q7umy1W9nDEyVKJG\nvMU0j6XzhgsCgYAr6t91fr0vTBESqQO9x7DzYUsDVGYBpbJOc8kDqzkAiVBRQ4rR\noRi5k/eY3DF4gRQ0451sAKm8oWEKCpUZgauppHaqsuzyOMX6IFQ3thKfBrM3U/fW\n6KlaZhsXxfZ7uvkVEmBKf5v+Zl2J/kBOg6Ayb7PB4hxxTJzx+CwY0sYuOQKBgF9E\nTWKFFmJsPHbuyC9fait8cYl3Y62C77tNygQ9i+Wg+H6cCH5LS/p4Bm+k9fSF0dtW\nE6N2wrep0Bmq0SvF53LCyHik/9EqDRfrDGodVW/rXXP4CEhzW/wGIrB+uFc6uGIG\nlhFMduCruaqsecmPX5PPvE+VsAMGKs0DrizlaBMLAoGAXw36y2XqY7+1kh1FKaCp\nl4bl5+LA+AT2vKy5i+EY/N2e+w+0LOn3D8LdXVNsPNXlkXRq82wyqIIXgVdltub0\nV9GWwvG+5HP36ef4IFo1/ibbdzsFcxdpm43jM3EVeXw63HByhAywoXMw3sgCmDlj\nVxEAHyLrqtX87qzjyFSrjUM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "oao-india-stack@oao-india.iam.gserviceaccount.com",
+  "client_id": "100880331832151111199",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/oao-india-stack%40oao-india.iam.gserviceaccount.com"
+}

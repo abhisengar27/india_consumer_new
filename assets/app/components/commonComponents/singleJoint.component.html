@@ -1,0 +1,24 @@
+<div [hidden]="savingsORsalary" class="contact-info" data-aos="fade-up">
+	<!-- single or joint -->
+	<div class="account-content" id="1">
+		<h2>{{ 'singleJoint.text' | translate }}</h2>
+		<input type="submit" (click)="setSingleOrJoint('single')" class="btn btn-default button button1" id="button1" value="{{ 'singleJoint.button_left' | translate }}"
+		/>
+		<input type="submit" (click)="setSingleOrJoint('joint')" class="btn btn-default button button1" id="button2" value="{{ 'singleJoint.button_right' | translate }}"
+		/>
+	</div>
+	<!-- /single or joint -->
+
+</div>
+
+<div [hidden]="VechaleLoan" class="contact-info" data-aos="fade-up">
+
+	<div class="account-content " id="1">
+		<h2>{{ 'CARLOAN.TITLE' | translate }}</h2>
+		<input type="submit" (click)="loanType('New Car')" class="btn btn-default button button3" id="button1" value="{{ 'CARLOAN.CARLOAN_NEWCAR_BUTTON' | translate }}"
+		/>
+		<input type="submit" (click)="loanType('Refinance')" class="btn btn-default button button3" id="button2" value="{{ 'CARLOAN.CARLOAN_REFINANCE_BUTTON' | translate }}"
+		/>
+	</div>
+
+</div>

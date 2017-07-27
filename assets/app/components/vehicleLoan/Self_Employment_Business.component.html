@@ -1,0 +1,54 @@
+<div class="contact-info" data-aos="fade-up">
+
+	<!-- chooseEmployer  -->
+	<div class="account-content " id="acc-cont">
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-sm-4">
+				<h3 style="padding-bottom: 5%;">{{ 'employerDetails.Work_experience' | translate }}</h3>
+				<!--<input placeholder="Work experience in year" class="form-control txtbox" id="experience" type="number" [(ngModel)]="model1.Work_experience">-->
+				<div class="form-group">
+					<select (change)="change()" class="form-control txtbox" id="experience" [(ngModel)]="model1.Work_experience">
+                    <option>> 0</option>
+                    <option>> 1</option>
+                    <option>> 2</option>
+                    <option>> 3</option>
+                    <option>> 4</option>
+                    <option>> 5</option>
+                    </select>
+				</div>
+			</div>
+			<div [hidden]="!noMonths"class="col-md-4 col-lg-4 col-sm-4">
+				<h3 style="padding-bottom: 5%;">{{ 'employerDetails.no_of_months' | translate }}</h3>
+				<!--<input placeholder="Number of months" class="form-control txtbox" id="country" type="number" [(ngModel)]="model1.noMonths">-->
+				<div class="form-group">
+					<select class="form-control txtbox" id="experience" [(ngModel)]="model1.noMonths">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    </select>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4">
+				<h3 style="padding-bottom: 5%;">{{ 'employerDetails.netincome' | translate }}</h3>
+				<input placeholder="Last years PAT as per ITR" class="form-control txtbox" id="PAT" type="number" [(ngModel)]="model1.PAT">
+			</div>
+		</div>
+
+	</div>
+	<!-- /chooseEmployer -->
+	<div [hidden]="upsel_flag" class="form-btn-wrapper" style="margin-right: 60px;">
+		<a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+		<button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+			[disabled]="model1.PAT=='' || model1.PAT== null || model1.Work_experience==null || model1.Work_experience==''" data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_continue'|translate }}</span></button>
+	</div>
+
+
+</div>

@@ -1,0 +1,155 @@
+<div class="contact-info" data-aos="fade-up">
+    <div id="aadharInfo">
+        <div class="row">
+            <h4 style="margin-left:27px;" class="card-title">{{ 'employerDetails.upload_contract_letter' | translate }}</h4>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+            <div class="col-md-6 col-lg-6 col-sm-3">
+                <div id="uploaingMsg1" class="row col-md-12">
+                    <div class="existing-member-login">
+                        <div id="custom-info-alert" class="info-alert center-msg">
+                            <div class="alert-msg">
+                                <ul class="custom-small">
+                                    <li>{{ 'employerDetails.ask_letter_format_message' | translate }}</li>
+                                    <li>{{ 'employerDetails.download_format_letter' | translate }}
+                                        <img src="/assets/images/right-arrow.svg" alt="download">
+                                        <button title="Click here to download" (click)="download()" style="margin-top: 5px"> 
+                                 <img src="/assets/images/download_icon.svg" alt="download">
+                                </button></li>
+                                    <li>{{ 'employerDetails.upload_signed_letter' | translate }}</li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3 col-lg-3col-sm-3"></div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <div id="dropboxArea1">
+                    <label class="form-label">{{ 'employerDetails.upload_your_letter' | translate }}</label>
+                    <div [hidden]="!pdf_flag" id="sharedImage">
+                        <a href="javascript:void(0);" (click)="removeFile()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;"
+                            title="Change uploaded file"><span class="glyphicon glyphicon-edit"></span></a>
+                    </div>
+                    <div [hidden]="!jpg_flag " id="sharedImage">
+                        <a href="javascript:void(0);" (click)="removeFile()" style="z-index: 60;position:absolute;right: 3.6%;top: 10%;background-color:white;"
+                            title="Change uploaded file"><span class="glyphicon glyphicon-edit"></span></a>
+                    </div>
+                    <div id="panDropBox" [hidden]="zone_show_flag" >
+                        <dropzone (removedfile)="removeFile($event)" (addedfile)="addedfile()" (success)="employmentDetails($event)" [config]="config"
+                            [message]="uploadPANMsg"></dropzone>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+        <div id="pdf_flag" [hidden]="!pdf_flag" class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+            <div id="pdf_pic" class="col-md-6 col-md-offset-3 col-sm-offset-1 col-lg-offset-4 col-lg-6 col-sm-6">
+                <img src="/assets/images/pdf_icon.jpg" alt="back-icon" tabindex="0">
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+
+        <div id="jpg_flag" [hidden]="!jpg_flag" class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+            <div class="col-md-6 col-md-offset-0 col-sm-offset-0 col-lg-offset-0 col-lg-6 col-sm-6">
+                 <img src="{{baseUrl}}/{{model.application_id}}/{{doc_type}}/{{uploadedFileName}}" alt="JPJ-icon" tabindex="0" style="width:100%;margin-bottom:10px;height:190px;">
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+
+
+          
+        <div [hidden]="!upload_success_flag" class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+            <div class="col-md-6 col-lg-6 col-sm-3">
+                <div id="uploaingMsg1" class="row col-md-12">
+                    <div class="existing-member-login">
+                        <div id="" class="info-alert center-msg">
+                            <div class="alert-msg">
+                                <small>{{ 'employerDetails.upload_success_message' | translate }}</small><i id="custom-ok"
+                                    class="glyphicon glyphicon-ok"></i>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3"></div>
+        </div>
+
+
+        <br>
+        <div class="form-btn-wrapper test-top">
+            <a tabindex="-1" (click)="moveBack()" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" tabindex="0"> </a>
+            <button (click)=" onSubmit()" type="submit" tabindex="0" class="btn btn-form-primary" data-style="expand-right" data-spinner-color="white"
+                [disabled]="panFlag"><span class="ladda-label">{{'PAN_INFO.PROCEED'|translate}}</span></button>
+        </div>
+    </div>
+</div>
+
+<div id="success" class="modal fade " role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="success-modal">
+
+                    <div class="center-content">
+                        <span class="info-icon successicon"><img src="/assets/images/success.svg" alt=""></span>
+                        <h2>{{'PERSONALBASICINFO.APPLICATION' | translate}} <br/> {{'PERSONALBASICINFO.SUCCESS_SAVED' | translate}}
+                        </h2>
+                        <p class="cust-id">{{'PERSONALBASICINFO.APPLICATION_REFERENCE' | translate}} : <strong>{{model.application_id}}</strong></p>
+                        <div class="existing-member-login">
+                            <div class="info-alert  center-msg">
+                                <div class="alert-msg"> {{'INFO_MESSAGE.INF_001' | translate}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="form-btn-wrapper">
+                            <button class="btn btn-form-primary address-info" [routerLink]="['/home']" data-dismiss="modal" autofocus> Home </button>
+                             <button id="continue-btn" class="btn btn-form-primary address-info"  data-dismiss="modal" autofocus> CONTINUE </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!--this is to create pdf file-->
+<div hidden class="row" id="download">
+    <div class="row">
+        <div class="col-md-12 custom-text-align">
+            <h5>(To be printed on company letter head)</h5>
+        </div>
+
+    </div>
+    <div class="row">
+        <p>The Branch Manager</p>
+        <p>Latfin Bank Ltd</p>
+        <br>
+        <br>
+        <p>Subject: Bank Account Opening Request</p>
+        <br>
+        <br>
+        <p>Dear Sir/Madam,</p>
+        <p>This is to certify that {{model.title}}.{{model.fname}} {{model.mname}} {{model.lname}}, residing at {{model.address}}
+            is an employee of {{model.employer}}. We request you to open his bank account at Latfin Bank Limited.</p>
+        <br>
+        <br>
+        <p>Regards,</p>
+        <p>Founder</p>
+    </div>
+</div>
+<!--/this is to create pdf file-->

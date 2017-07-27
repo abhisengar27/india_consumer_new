@@ -1,0 +1,261 @@
+{
+    "name": "Only letters & apostrophe are allowed & not empty.",
+    "dob": "Select a date",
+    "mobile": " This is a required field and the format is XXXXXXXXXX ",
+    "email": "Enter in abc@xyz.com format & not empty ",
+    "address": "This is a required field",
+    "passportNum": "This is a required field and the Format A1234567",
+    "dlNum": "This is a required field and the Format 0123456789",
+    "required_v": "This is a required field",
+    "title": "Title is required",
+    "tfn": "Enter in 123456789 format",
+    "number1_99": "The number must be between 1-99 and not empty",
+    "amount": "Amount should be less than 12 digits & not empty",
+    "mname": "Only letters and apostrophe are allowed.",
+    "refnumber": "Refrence number should be single digit",
+    "wrongDetails": "Please enter the valid combination of Application Id and Date of birth.",
+    "addrNotFound": "Please enter valid street address",
+    "PaddrNotFound": "Please enter valid postal address",
+    "noOfDependents":"The number must be between 0-9 and not empty",
+    "url": {
+        "mongoDB": "mongodb://sysdba:sysdba@ds129641.mlab.com:29641/mlabdbi",
+        "gmailID": "latfindevelopers@gmail.com",
+        "gmailPassword": "latfindevelopers@123",
+        "host": "smtp.gmail.com",
+        "port": "465"
+    },
+    "BNA": {
+
+        "English": {
+            "section_1": {
+                "name": "Personal Details",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "0"]
+            },
+            "section_2": {
+                "name": "PAN Information",
+                "route_v": "panInfo",
+                "value": 2,
+                "data": ["completed", "active", "", "", "25"]
+            },
+            "section_3": {
+                "name": "Upload Documents",
+                "route_v": "docsUpload",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "50"]
+
+            },
+            "section_4": {
+                "name": "Register for Ebanking",
+                "route_v": "passwordSetup",
+                "value": 4,
+                "data": ["completed", "completed", "completed", "active", "75"]
+            }
+
+
+        },
+        "Hindi": {
+
+            "section_1": {
+                "name": "व्यक्तिगत विवरण",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "0"]
+            },
+            "section_2": {
+                "name": "पैन की जानकारी",
+                "route_v": "panInfo",
+                "value": 2,
+                "data": ["completed", "active", "", "", "25"]
+            },
+            "section_3": {
+                "name": "दस्तावेज़ अपलोड करें",
+                "route_v": "docsUpload",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "50"]
+            },
+            "section_4": {
+                "name": "ईबैंकिंग के लिए पंजीकरण करें",
+                "route_v": "onlineIdCheck",
+                "value": 4,
+                "data": ["completed", "completed", "completed", "active", "75"]
+            }
+
+        },
+        "Kannada": {
+
+            "section_1": {
+                "name": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "0"]
+            },
+            "section_2": {
+                "name": "ಪಾನ್ ಮಾಹಿತಿ",
+                "route_v": "panInfo",
+                "value": 2,
+                "data": ["completed", "active", "", "", "25"]
+            },
+            "section_3": {
+                "name": "ಡಾಕ್ಯುಮೆಂಟ್ಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+                "route_v": "docsUpload",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "50"]
+            },
+            "section_4": {
+                "name": "ಇ-ಬ್ಯಾಂಕಿಂಗ್ಗಾಗಿ ನೋಂದಾಯಿಸಿ",
+                "route_v": "onlineIdCheck",
+                "value": 4,
+                "data": ["completed", "completed", "completed", "active", "75"]
+            }
+
+        }
+    },
+
+
+    "number_of_sections": {
+        "SAV": "3",
+        "SAL": "4",
+         "LAA": "6"
+    },
+    "SAL1": {
+        "English": {
+            "section_1": {
+                "name": "Personal Details",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "", "0"]
+            },
+            "section_2": {
+                "name": "Employment Details",
+                "route_v": "confirmLetter",
+                "value": 2,
+                "data": ["completed", "active", "", "", "", "20"]
+            },
+            "section_3": {
+                "name": "PAN Information",
+                "route_v": "panInfo",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "", "40"]
+            },
+            "section_4": {
+                "name": "Upload Documents",
+                "route_v": "docsUpload",
+                "value": 4,
+                "data": ["completed", "completed", "completed", "active", "", "60"]
+            },
+            "section_5": {
+                "name": "Register for Ebanking",
+                "route_v": "onlineIdCheck",
+                "value": 5,
+                "data": ["completed", "completed", "completed", "completed", "active", "80"]
+            }
+
+        },
+        "Hindi": {
+
+            "section_1": {
+                "name": "व्यक्तिगत विवरण",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "", "0"]
+            },
+               "section_2": {
+                "name": "रोज़गार विवरण",
+                "route_v": "confirmLetter",
+                "value": 2,
+               "data": ["completed", "active", "", "", "", "20"]
+            },
+            "section_3": {
+                "name": "पैन की जानकारी",
+                "route_v": "panInfo",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "", "40"]
+            },
+            "section_4": {
+                "name": "दस्तावेज़ अपलोड करें",
+                "route_v": "docsUpload",
+                "value": 4,
+                 "data": ["completed", "completed", "completed", "active", "", "60"]
+            },
+            "section_5": {
+                "name": "ईबैंकिंग के लिए पंजीकरण करें",
+                "route_v": "onlineIdCheck",
+                "value": 5,
+                "data": ["completed", "completed", "completed", "completed", "active", "80"]
+            }
+
+        },
+        "Kannada": {
+            "section_1": {
+                "name": "ವೈಯಕ್ತಿಕ ವಿವರಗಳು",
+                "route_v": "personalBasicInfo",
+                "value": 1,
+                "data": ["active", "", "", "", "", "0"]
+            },         
+            "section_2": {
+                "name": "ಉದ್ಯೋಗ ವಿವರಗಳು",
+                "route_v": "confirmLetter",
+                "value": 2,
+               "data": ["completed", "active", "", "", "", "20"]
+            },
+            "section_3": {
+                "name": "ಪಾನ್ ಮಾಹಿತಿ",
+                "route_v": "panInfo",
+                "value": 3,
+                "data": ["completed", "completed", "active", "", "", "40"]
+            },
+            "section_4": {
+                "name": "ಡಾಕ್ಯುಮೆಂಟ್ಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ",
+                "route_v": "docsUpload",
+                "value": 4,
+                "data": ["completed", "completed", "completed", "active", "", "60"]
+            },
+            "section_5": {
+                "name": "ಇಂಟರ್ನೆಟ್ ಬ್ಯಾಂಕಿಂಗ್ಗಾಗಿ ನೋಂದಾಯಿಸಿ",
+                "route_v": "onlineIdCheck",
+                "value": 5,
+                "data": ["completed", "completed", "completed", "completed", "active", "80"]
+            }
+
+        }
+    },
+    "VL1":{
+           "English": {
+            "section_1": {
+                "name": "Basic Information",
+                "route_v": "singleJoint",
+                "value": 1
+            },
+            "section_2": {
+                "name": "Employment Information",
+                "route_v": "employmentType",
+                "value": 2
+            },
+            "section_3": {
+                "name": "EMI Calculation",
+                "route_v": "emicalculater",
+                "value": 3
+            },
+            "section_4": {
+                "name": "Personal Information",
+                "route_v": "personalBasicInfoVehicleLoan",
+                "value": 4
+            },
+              "section_5": {
+                "name": "Employer Information",
+                "route_v": "employerExtraInfoForLoan",
+                "value": 5
+            },
+                "section_6": {
+                "name": "Upload Documents",
+                "route_v": "documentsForVehicleLoan",
+                "value": 6
+            }
+
+        }
+
+    }
+
+}

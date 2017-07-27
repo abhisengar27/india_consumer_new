@@ -1,0 +1,29 @@
+<div class="contact-info" data-aos="fade-up">
+
+    <!-- chooseEmployer  -->
+    <div class="account-content " id="acc-cont">
+        <h2 style="padding-bottom: 5%;">{{ 'employerDetails.TypeofEmployment' | translate }}</h2>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <select class="form-control txtbox" [(ngModel)]="model1.employertype" id="employertype" name="employertype" #employertype="ngModel">
+                            <option value='0'>Select One</option>
+                                <option *ngFor="let employerstype of emplyers" [ngValue]= "employerstype">{{employerstype}} </option>
+							</select>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+        </div>
+
+    </div>
+    <!-- /chooseEmployer -->
+
+    <div class="form-btn-wrapper" style="margin-right: 60px;">
+        <a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+        <button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+            [disabled]="model1.employertype=='0'" data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_continue'|translate }}</span></button>
+    </div>
+
+
+</div>

@@ -1,0 +1,86 @@
+<div class="contact-info" data-aos="fade-up">
+
+	<!-- chooseEmployer  -->
+	<div class="account-content " id="acc-cont">
+		<div class="row">
+			<div class="col-md-2 col-lg-2 col-sm-2">
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4">
+				<h4 style="padding-bottom: 5%;">{{ 'employerDetails.chooseEmployer' | translate }}</h4>
+				<input placeholder="Select your Employer" class="form-control txtbox" id="country" type="text" [(ngModel)]="query" (keyup)="filter()">
+				<div *ngIf="filteredList.length > 0" id="employers" style="max-height: 150px;overflow-y: scroll;">
+					<ul id="em-ul" *ngFor="let item of filteredList">
+						<li style="list-style-type: none">
+							<div id="p-default" class="panel panel-default">
+								<div (click)="select(item)" id="p_body" class="panel-body"><strong>{{item}}</strong></div>
+							</div>
+
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4">
+				<h4 style="padding-bottom: 5%;">{{ 'employerDetails.netincome' | translate }}</h4>
+				<div class="input-group">
+                <span class="input-group-addon">₹</span>
+				<input type="text" placeholder="Annual net income" class="form-control txtbox" [(ngModel)]="model1.netIncome" id="netIncome"  name="netIncome" #netIncome="ngModel" maxlength="18" (focus)="revert(netIncome.value,'netIncome')"
+				(blur)="AmountFormatter(netIncome.value,'netIncome')"  onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));">
+				</div>
+			</div>
+			<div class="col-md-2 col-lg-2 col-sm-2">
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 col-lg-2 col-sm-2">
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4">
+				<h4 style="padding-bottom: 5%;">{{ 'employerDetails.Work_experience' | translate }}</h4>
+				<!--<input placeholder="Work experience in year" class="form-control txtbox" id="experience" type="number" [(ngModel)]="model1.Work_experience">-->
+				<div class="form-group">
+					<select (change)="change()" class="form-control txtbox" id="experience" [(ngModel)]="model1.Work_experience">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">> 5</option>
+                    </select>
+				</div>
+			</div>
+			<div [hidden]="!noMonths"class="col-md-4 col-lg-4 col-sm-4">
+				<h4 style="padding-bottom: 5%;">{{ 'employerDetails.no_of_months' | translate }}</h4>
+				<!--<input placeholder="Number of months" class="form-control txtbox" id="country" type="number" [(ngModel)]="model1.noMonths">-->
+				<div class="form-group">
+					<select class="form-control txtbox" id="experience" [(ngModel)]="model1.noMonths">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                    <option>8</option>
+                    <option>9</option>
+                    <option>10</option>
+                    <option>11</option>
+                    </select>
+				</div>
+			</div>
+			<div class="col-md-2 col-lg-2 col-sm-2">
+				<!--<input type="text" required class="form-control textbox-with-select" [(ngModel)]="model1.netIncome" id="netIncome"
+                            name="netIncome" #netIncome="ngModel" maxlength="18" (focus)="revert(netIncome.value,'netIncome')"
+                 (blur)="AmountFormatter(netIncome.value,'netIncome')"  onkeypress="return event.charCode === 0 || /\d/.test(String.fromCharCode(event.charCode));">-->
+			</div>
+		</div>
+
+	</div>
+	<!-- /chooseEmployer -->
+	<div class="form-btn-wrapper" style="margin-right: 60px;">
+		<a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+		<button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+			[disabled]="model1.employer=='' || model1.employer==null || model1.employer==undefined ||model1.netIncome=='' || model1.netIncome==null " data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_continue'|translate }}</span></button>
+	</div>
+
+
+</div>

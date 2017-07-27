@@ -1,0 +1,51 @@
+<div class="contact-info" data-aos="fade-up">
+
+    <!-- chooseEmployer  -->
+    <div class="account-content " id="acc-cont">
+        <h2 style="padding-bottom: 5%;">{{ 'CARLOAN.VEHICLE_DETAILS' | translate }}</h2>
+        <div class="row">
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+            <div class="col-md-6 col-lg-6 col-sm-6">
+                <input placeholder="Maker, Model & Variant of car(e.g. Honda City )" class="form-control txtbox" id="query" name="query" type="text" [(ngModel)]="query" (keyup)="filter()">
+                <div *ngIf="filteredList.length > 0" id="employers" style="max-height: 150px;overflow-y: scroll;">
+                    <ul id="em-ul" *ngFor="let item of filteredList">
+                        <li style="list-style-type: none">
+                            <div id="p-default" class="panel panel-default">
+                                <div (click)="select(item)" id="p_body" class="panel-body"><strong>{{item}}</strong></div>
+                            </div>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+        </div>
+        <div [hidden]="Ex_Showroom_price" class="row">
+             <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+             <div class="col-md-6 col-lg-6 col-sm-6">
+             <h5 style="padding-bottom: 5%;">Ex-showrom price is : {{model1.vehicle_onroad_price}}</h5>
+             </div>
+              <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+        </div>
+        <div [hidden]="ErrorMsg" class="row">
+             <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+             <div class="col-md-6 col-lg-6 col-sm-6">
+             <h5 style="padding-bottom: 5%;">Can you re-check on the spelling, we could'nt find a match.</h5>
+             </div>
+              <div class="col-md-3 col-lg-3 col-sm-3">
+            </div>
+        </div>
+    </div>
+    <!-- /chooseEmployer -->
+    <div [hidden]="upsel_flag" class="form-btn-wrapper" style="margin-right: 60px;">
+        <a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+        <button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+            [disabled]="!disable_btn_flag" data-spinner-color="white"><span class="ladda-label">{{'employerDetails.button_continue'|translate }}</span></button>
+    </div>
+
+</div>

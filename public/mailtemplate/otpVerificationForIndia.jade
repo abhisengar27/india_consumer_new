@@ -1,0 +1,110 @@
+doctype html
+html(lang='en')
+  head
+    title OTP
+    meta(charset='utf-8')
+    style(type='text/css').
+      @media screen and (max-width: 525px) {
+      table[class="wrapper"]{
+      width:100% !important;}
+      td[class="logo"]{
+      text-align: left;
+      padding: 20px 0 20px 0 !important;}
+      td[class="mobile-hide"]{
+      display:none;}
+      td[class="padding-50"]{
+      padding-top: 50px !important;
+      }
+      img[class="mobile-hide"]{
+      display: none !important;}
+      td[class="no-padding-in-mobile"]{
+      padding:0!important;}
+      td[class="logo"] img{
+      margin:0 auto!important;}
+      td[class="head2"]{
+      font-size: 16px!important;
+      padding: 25px 20px 20px 20px!important;}
+      table[class="responsive-table"]{
+      width:100%!important;}
+      td[class="padding"]{
+      padding: 10px 5% 15px 5% !important;}
+      td[class="padding2"]{
+      padding: 10px 5% 10px 5% !important;
+      text-align: left;}
+      td[class="mobile-wrapper"]{
+      padding: 10px 5% 15px 5% !important;}
+      td[class="padding2-1"]{
+      padding: 10px 5% 10px 5% !important;
+      text-align: center;}
+      td[class="padding3"]{
+      padding: 10px 5% 35px 5% !important;}
+      td[class="padding4"]{
+      padding: 0 8% 0 8% !important;}
+      td[class="padding5"]{
+      padding: 0 0 10px 0 !important;}
+      td[class="padding6"]{
+      padding: 0px 5% 10px 5% !important;
+      text-align: left;}
+      td[class="padding7"]{
+      padding: 0px 5% 0 5% !important;
+      text-align: left;}
+      td[class="pad-top"]{
+      padding-top: 25px !important;}
+      td[class="no-pad"]{
+      padding: 0 0 20px 0 !important;}
+      td[class="no-padding"]{
+      padding: 0 !important;}
+      td[class="section-padding"]{
+      padding: 50px 15px 50px 15px !important;}
+      td[class="section-padding1"]{
+      padding: 15px 15px 30px 15px !important;}
+      td[class="section-padding2"]{
+      padding: 50px 15px 0 15px !important;}
+      td[class="padding-city"]{
+      padding: 10px 5% 15px 5% !important;}
+      a[class="cta"]{
+      padding: 12px 0 !important;
+      border: 0px !important;
+      width: 100% !important;
+      }
+      }
+  body(style='margin: 0; padding: 0;')
+    // HEADER
+    table(border='0', cellpadding='0', cellspacing='0', width='100%')
+      tr
+        td
+          div(align='center', style='padding: 0px 15px 0px 15px;')
+            table.wrapper(border='0', cellpadding='0', cellspacing='0', width='500')
+              // LOGO + NAV LINKS
+              tr
+                td.logo(style='padding: 20px 0px 30px 0px;')
+                  table(border='0', cellpadding='0', cellspacing='0', width='100%')
+                    tr
+                      td(width='100%', align='center')
+                        a(href='http://latitudefintech.com/')
+                          img(alt='Litmus', src='https://hackerearth-media.global.ssl.fastly.net/media/companies/6c7081d-Latitude%20Logo%20Black%20Foreground%20be9730.png', width='250', height='59', style='display: block; font-family: Georgia; font-style: italic; color: #61bdb2; font-size: 19px;', border='0')
+    // MESSAGE
+    table(border='0', cellpadding='0', cellspacing='0', width='100%')
+      tr
+        td.section-padding(bgcolor='#ffffff', align='center', style='padding: 70px 15px 70px 15px;')
+          table.responsive-table(border='0', cellpadding='0', cellspacing='0', width='500')
+            tr
+              td
+                table(width='100%', border='0', cellspacing='0', cellpadding='0')
+                  tr
+                    td
+                      table(width='100%', border='0', cellspacing='0', cellpadding='0')
+                        tr
+                          td.padding2(align='justify', style='font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #222222;')
+                            p
+                              | Dear #{data.fname} #{data.lname},
+                              br
+                              br
+                              | Your one time password (OTP) is #{data.otp}
+                              br
+                              br
+                              | Warm Regards,
+                              br
+                              | Latitude Bank
+                              
+                      

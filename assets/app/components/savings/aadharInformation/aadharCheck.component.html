@@ -1,0 +1,10 @@
+<div class="contact-info" data-aos="fade-up">
+    <!-- single or joint -->
+    <div class="account-content " id="1">
+        <h2>{{ 'aadharCheck.text' | translate }}</h2>
+        <button type="submit" [ladda]="isLoading" data-style="expand-right" data-spinner-color="white" (click)="setAadharCheck(true)" class="btn btn-default button button1" id="button1"><span class="ladda-label">{{ 'aadharCheck.button_left' | translate }}</span></button>
+        <button type="submit" (click)="setAadharCheck(false)" class="btn btn-default button button1" id="button2">{{ 'aadharCheck.button_right' | translate }}</button>
+    </div>
+    <!-- /single or joint -->
+
+</div>

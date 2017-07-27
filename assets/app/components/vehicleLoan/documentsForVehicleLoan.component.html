@@ -1,0 +1,210 @@
+<div data-aos="fade-up">
+    <form class="form" (ngSubmit)="onSubmit()" #basicDetails="ngForm">
+        <div class="row">
+            <!--left div-->
+            <div class="col-sm-3 bs-custom-tab">
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive responsive" role="tablist">
+                    <li *ngIf="jobFlag" id="job" routerLinkActive="active" class="next" (click)="getClickedID('job')">
+                        <a [routerLink]="['jobProof']" class="loantab" role="tab" id="jobContinue-tab" data-toggle="tab" aria-controls="jobContinue">
+                            <h5 class="text">JOB CONTINUITY<span [hidden]="!upload_success_flag2"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li class="next" routerLinkActive="active" (click)="getClickedID('address')">
+                        <a [routerLink]="['addressProof']" class="loantab" id="addrDoc-tab" role="tab" data-toggle="tab" aria-controls="addrDoc"
+                            aria-expanded="true">
+                            <h5 class="text">ADDRESS PROOF<span [hidden]="!upload_success_flag1"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li class="next" routerLinkActive="active" (click)="getClickedID('identity')">
+                        <a [routerLink]="['idProof']" class="loantab" role="tab" id="idProof-tab" data-toggle="tab" aria-controls="idProof">
+                            <h5 class="text">IDENTITY PROOF<span [hidden]="!upload_success_flag3"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li class="next" routerLinkActive="active" (click)="getClickedID('bankStmt')">
+                        <a [routerLink]="['bankStatement']" class="loantab" role="tab" id="bankStmt-tab" data-toggle="tab" aria-controls="bankStmt">
+                            <h5 class="text">BANK STATEMENT<span [hidden]="!upload_success_flag4"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li class="next" routerLinkActive="active" (click)="getClickedID('income')">
+                        <a [routerLink]="['incomeProof']" class="loantab" href="#incomeDoc" role="tab" id="incomeDoc-tab" data-toggle="tab" aria-controls="incomeDoc">
+                            <h5 class="text">INCOME DOCUMENT<span [hidden]="!upload_success_flag5"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li class="next" routerLinkActive="active" (click)="getClickedID('pan')">
+                        <a [routerLink]="['pan']" class="loantab" role="tab" id="vhlPan-tab" data-toggle="tab" aria-controls="vhlPan">
+                            <h5 class="text">PAN<span [hidden]="!upload_success_flag6"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                    <br><br><br>
+                    <li *ngIf="businessFlag" id="business" class="next" routerLinkActive="active" (click)="getClickedID('business')">
+                        <a [routerLink]="['businessProof']" class="loantab" role="tab" id="businessProof-tab" data-toggle="tab" aria-controls="businessProof">
+                            <h5 class="text">BUSINESS STABILITY<span [hidden]="!upload_success_flag7"><i id="custom-ok" class="glyphicon glyphicon-ok"></i></span></h5>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--/left div-->
+
+            <!--right div-->
+            <h3 class="custom-loan-h2">UPLOAD SUPPORTED DOCUMENTS</h3>
+            <div id="myTabContent" style=" padding-top:inherit;" class="tab-content responsive col-sm-offest-4 col-md-offset-4">
+                <div role="tabpanel" class="tab-pane fade in active" id="addrDoc" aria-labelledby="home-tab">
+                    <div class="form-group">
+                        <select class="form-control txtbox" name="addrDoc" style="width: 380px;margin-left: 15px;" id="addrDoc" [(ngModel)]="model.addrDoc">
+                                 <option value="0">{{'UPLOAD_DOCS.VALID_DOCS' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.PASSPORT' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.AADHAAR' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.DRIVER_LICENSE' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.VOTER_ID' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.NREGA' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.ID_CARD' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.BANK_ACC_OR_POST_OFFICE_BANK_ACC' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.UTILITY_BILL' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.EMPLOYER_ALLOTMENT' | translate}}</option>
+                        </select>
+                    </div>
+                    <router-outlet></router-outlet>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="jobContinue" aria-labelledby="home-tab">
+                    <div class="row" style="height: 50px;">
+                        <div class="col-sm-3">
+                            <div class="answer-section">
+                                <label class="emp-section-label">
+                        <input (click)="setEmploymentType($event)" type="radio" [checked]="show_Offer_letter" class="custom-radio-button" [(ngModel)]="model.Offer_letter" name="Offer_letter" value="Offer_letter">
+                        
+                        <span class="custom-radio1">
+                        </span>
+                        <span class="custom-radio1-label" for="employmentType">Offer letter</span>
+                       </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="answer-section">
+                                <label class="emp-section-label">
+                        <input (click)="setEmploymentType($event)" type="radio" [checked]="show_form_16" class="custom-radio-button" [(ngModel)]="model.form_16" name="form_16" value="form_16">
+                        
+                        <span class="custom-radio1">
+                        </span>
+                        <span class="custom-radio1-label" for="employmentType">2 Years form-16</span>
+                       </label>
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="answer-section">
+                                <label class="emp-section-label">
+                        <input (click)="setEmploymentType($event)" type="radio" [checked]="show_relieving_letter" class="custom-radio-button" [(ngModel)]="model.relieving_letter" name="relieving_letter" value="relieving_letter">
+                        
+                        <span class="custom-radio1">
+                        </span>
+                        <span class="custom-radio1-label" for="employmentType">Relieving letter</span>
+                       </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="businessProof" aria-labelledby="home-tab">
+                    <div class="col-sm-offest-4 col-md-8">
+                        <div class="form-group">
+                            <select class="form-control txtbox" name="businessProof" id="businessProof" [(ngModel)]="model.businessProof">
+                                <option>{{'UPLOAD_DOCS.SUPPORTED_DOCS' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.SALES_TAX' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.SHOP_LICENSE' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.SERVICE_TAX' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.TIN' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.TAN' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.VAT' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.EXCISE_AND_CUSTOM' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.BUSINESS_COMMENCEMENT' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.PROF_TAX' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.INCORP_CERTIFICATE' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="idProof" aria-labelledby="home-tab">
+                    <div class="col-sm-offest-4 col-md-8">
+                        <div class="form-group">
+                            <select class="form-control txtbox" style="width: 369px;" name="idProof" id="idProof" [(ngModel)]="model.idProof">
+                                 <option value="0">{{'UPLOAD_DOCS.VALID_DOCS' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.PASSPORT' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.AADHAAR' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.DRIVER_LICENSE' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.VOTER_ID' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.NREGA' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.ID_CARD' | translate}}</option>
+                                <option>{{'UPLOAD_DOCS.PAN' | translate}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="bankStmt" aria-labelledby="home-tab">
+                    <div class="col-sm-offest-4 col-md-8">
+                        <a href="javascript:void(0);" class="supportDocument1 col-sm-offest-4 col-md-offset-4">{{'UPLOAD_DOCS.VALID_DOCS' | translate}}</a>
+                        <div class="SupportDocumentAddressDiv">
+                            <label class="form-label">{{'UPLOAD_DOCS.SUPPORTED_DOCS' | translate}}</label>
+                            <ul>
+                                <li [hidden]="businessFlag">{{'UPLOAD_DOCS.BANK_STMT_SALARIED' | translate}}</li>
+                                <li [hidden]="jobFlag">{{'UPLOAD_DOCS.BANK_STMT_BUSINESS' | translate}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="incomeDoc" aria-labelledby="home-tab">
+                    <div class="col-sm-offest-4 col-md-8">
+                        <a href="javascript:void(0);" class="supportDocument1 col-sm-offest-4 col-md-offset-4">{{'UPLOAD_DOCS.VALID_DOCS' | translate}}</a>
+                        <div class="SupportDocumentAddressDiv">
+                            <label class="form-label">{{'UPLOAD_DOCS.SUPPORTED_DOCS' | translate}}</label>
+                            <ul>
+                                <li>{{'UPLOAD_DOCS.PAY_SLIP' | translate}}</li>
+                                <li>{{'UPLOAD_DOCS.FORM_16' | translate}}</li>
+                                <li [hidden]="jobFlag">{{'UPLOAD_DOCS.ITR' | translate}}</li>
+                                <li>{{'UPLOAD_DOCS.BANK_STMT_SALARIED' | translate}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div role="tabpanel" class="tab-pane fade" id="vhlPan" aria-labelledby="home-tab">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-btn-wrapper">
+            <a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+            <button type="submit" tabindex="0" class="btn btn-form-primary ladda-button" data-dismiss="modal" [ladda]="isLoading" data-style="expand-right"
+                [disabled]="(!upload_success_flag1 || !upload_success_flag4 || !upload_success_flag5 || !upload_success_flag6 || !upload_success_flag3 || !((jobFlag && upload_success_flag2)|| (businessFlag && upload_success_flag7)))"
+                data-spinner-color="white">
+                <span class="ladda-label">SUBMIT</span>
+            </button>
+        </div>
+    </form>
+</div>
+
+<div id="success" class="modal fade" role="dialog " data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-pop matching-customer-details ">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="success-modal">
+                    <button type="button" class="close" data-dismiss="modal" (click)="backToHome()"><img src="/assets/images/close.svg " alt=" "></button>
+                    <div class="center-content ">
+                        <span class="info-icon successicon "><img src="/assets/images/success.svg " alt=" "></span>
+                        <h2>{{'SUCCESS_MODAL.SUCCESS' | translate}}</h2>
+                        <h4> Thanks, we have captured all your details and documents, our executive will review all the information
+                            and get back to you at the earliest.</h4>
+                        <a class="regbtn" data-dismiss="modal" (click)="backToHome()">{{'SUCCESS_MODAL.HOME' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

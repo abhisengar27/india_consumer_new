@@ -1,0 +1,89 @@
+<div [hidden]="vehicle_make_text" class="row">
+	<div class="col-md-4 col-lg-4 col-sm-4">
+		<h5 class="custom-emi-h5">{{model1.vehicle_make}}</h5>
+		<span style="z-index: 60;position:absolute;right: 23.6%;top: 22%;"><a [hidden]="isDigilockerFetching" href="javascript:void(0);" (click)="changemakeANDmodel()" title="Change car make and model here">{{ 'EMI_CALCULATOR.changeButton' | translate }}</a></span>
+	</div>
+	<div class="col-md-4 col-lg-4 col-sm-4">
+	</div>
+	<div class="col-md-4 col-lg-4 col-sm-4">
+		<h5 class="custom-emi-h5">{{"EMI_CALCULATOR.Interest_Rate" | translate}}</h5>
+	</div>
+</div>
+<div [hidden]="makeAndModel" class="row">
+	<div class="col-md-4 col-lg-4 col-sm-4">
+		<input placeholder="Change your car make and model here!" class="form-control txtbox" id="country" type="text" [(ngModel)]="query"
+			(keyup)="filter()">
+		<div *ngIf="filteredList.length > 0" id="employers" style="max-height: 150px;overflow-y: scroll;">
+			<ul id="em-ul" *ngFor="let item of filteredList">
+				<li style="list-style-type: none">
+					<div id="p-default" class="panel panel-default">
+						<div (click)="select(item)" id="p_body" class="panel-body"><strong>{{item}}</strong></div>
+					</div>
+
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="col-md-4 col-lg-4 col-sm-4">
+	</div>
+	<div class="col-md-4 col-lg-4 col-sm-4">
+		<h5 class="custom-emi-h5">{{"EMI_CALCULATOR.Interest_Rate" | translate}}</h5>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-4 col-lg-4 col-sm-4">
+		<h5 class="custom-emi-h5">{{"EMI_CALCULATOR.EX_SHOWROOM_TEXT" | translate}} ₹{{this.show_EX_showRoom_price}}</h5>
+	</div>
+</div>
+<br>
+<div class="row">
+	<div class="col-sm-5 custom-emi-left-div">
+		<label class="custom-emi-h5" for="Loan Amount">Loan amount : ₹ {{this.ShowloanAmountRange}} </label>
+		<input (change)="onChangeLoanAmount($event.target.value)" class="custom-emi-input" type="range" id="loanAmountRange" min="100000"
+			value="300000" max={{model1.loan_eligible_amount}} step="5000" [(ngModel)]="model.loanAmountRange" />
+		<small class="pull-left custom-emi-small custom-emi-h5">₹ 1,00,000.00</small>
+		<small class="pull-right custom-emi-small custom-emi-h5">
+			<i tooltip="Maximum amount : 85% of Ex-showroom price (Rs.{{exShowromPrice}}), Max sanction-able amount (Rs.{{sanctionableamount}}) or 3 x Yearly salary (Rs. {{threeYrNetIncome}}), whichever is less." tooltip-trigger tooltip-animation="false" tooltip-placement="top" class="maxEmiInfo fa fa-info-circle">
+			</i> ₹ {{this.Showloaneligibleamount}}</small>
+
+		<br>
+		<label style="margin-top: 27px;" class="custom-emi-h5" for="Loan Term">Loan term (in years): {{model.loanTermRange}} </label>
+		<input (change)="onChangeLoanTerm($event.target.value)" class="custom-emi-input" id="loanTermRange" type="range" min="1"
+			max="7" step="1" [(ngModel)]="model.loanTermRange" />
+		<div class="row" style="margin:5px">
+			<small class="pull-left custom-emi-small">1</small>
+			<small class="pull-right custom-emi-small">7</small>
+		</div>
+		<br>
+		<label class="custom-emi-h5" for="Monthly EMI">Monthly EMI : ₹ {{this.ShowmonthlyEmiRange}} </label>
+		<input (change)="onChangeMonthlyEmi($event.target.value)" class="custom-emi-input" id="monthlyEmiRange" type="range" min="{{model1.min_emi}}"
+			max={{model1.max_emi}} [(ngModel)]="model.monthlyEmiRange" />
+		<small class="pull-left custom-emi-small custom-emi-h5">₹ {{ShowMinEmi}}</small>
+		<small class="pull-right custom-emi-small custom-emi-h5">₹ {{ShowMaxEmi}}</small>
+		<br>
+	</div>
+	<div class="col-sm-4 custom-emi-center-div">
+		<p class="custom-emi-p custom-emi-h5" for="emi">{{"EMI_CALCULATOR.MONTHLY_EMI" | translate}}</p>
+		<h3 class="custom-emi-h5">₹ {{this.ShowmonthlyEmiRange}}</h3>
+		<hr>
+		<p class="custom-emi-p custom-emi-h5" for="interestPaid">{{"EMI_CALCULATOR.TOTAL_INTEREST_PAYABLE" | translate}}</p>
+		<h3 class="custom-emi-h5">₹ {{this.ShowinterestPayable}}</h3>
+		<hr>
+		<p class="custom-emi-p custom-emi-h5" for="totalPayment">{{"EMI_CALCULATOR.TOTAL_PAYMENT" | translate}}</p>
+		<h3 class="custom-emi-h5">₹ {{this.ShowtotalPayableAmount}}</h3>
+	</div>
+	<div class="col-sm-3">
+		<div *ngIf="showChart" style="display: block;width: 250px; height:250px;">
+			<canvas baseChart [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)"
+				(chartClick)="chartClicked($event)"></canvas>
+		</div>
+	</div>
+
+</div>
+<div class="row">
+	<div class="form-btn-wrapper" style="margin-right: 60px;margin-top: 45px;">
+		<a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="clear()"> </a>
+		<button type="submit" tabindex="0" (click)="onSubmit()" class="btn btn-form-primary ladda-button" data-dismiss="modal" data-style="expand-right"
+			data-spinner-color="white"><span class="ladda-label">{{"EMI_CALCULATOR.PROCEED" | translate}}</span></button>
+	</div>
+</div>

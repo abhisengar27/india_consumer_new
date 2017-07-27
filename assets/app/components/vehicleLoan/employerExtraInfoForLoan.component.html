@@ -1,0 +1,180 @@
+<div data-aos="fade-up">
+	<h3 class="card-title">{{'employerDetails.CARD_TITLE' | translate}}</h3>
+	<div class="contact-info">
+
+
+		<form class="form" (ngSubmit)="onSubmit()">
+			<div class="row">
+
+				<!--</form> *ngIf="showAddress==true" -->
+
+			</div>
+
+			<div>
+				<small [hidden]="addrErr==false" class="text-danger">
+                                         {{configMsg?.addrNotFound}}
+                                </small>
+				<small [hidden]="paddrErr==false" class="text-danger">
+                                         {{configMsg?.PaddrNotFound}}
+                                </small>
+				<!--<form id="contactForm">-->
+				<div id="homeAutomaticAddress">
+					<div class="row">
+						<div class="col-md-4 col-lg-4 col-sm-4 has-min-height-106">
+							<label for="employer" class="form-label">{{ 'employerDetails.yourEmployer' | translate }}</label>
+							<input placeholder="employer" class="form-control txtbox" id="employer" name="employer" type="text" [(ngModel)]="model.employer"
+							 readonly>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 has-min-height-106">
+							<label for="housenum" class="form-label">{{ 'employerDetails.Designation' | translate }}</label>
+							<input placeholder="Designation" class="form-control txtbox" id="designation" name="designation" type="text" [(ngModel)]="model.designation">
+						</div>
+						<div class="col-md-4 col-sm-6 has-min-height-106">
+							<!--<input type="hidden" required="required" value=""  [(ngModel)]="model.app_id" name="app_id" #app_id="ngModel" />-->
+							<div class="form-group">
+								<div [ngClass]="{'form-group has-success has-feedback':(workEmailId.valid && workEmailId.dirty) }">
+									<div [ngClass]="{'form-group has-error has-feedback':(workEmailId.invalid && workEmailId.dirty)}">
+										<label for="workEmailId" class="form-label">{{ 'employerDetails.workEmailId' | translate }}</label>
+										<div class="input-group">
+											<span class="input-group-addon"><img class="custom-glyphicon" src="/assets/images/email_id.png"></span>
+											<input type="email" (keyup)="changeCallMatchingCustomerFlag()" class="form-control txtbox saveInfo" id="workEmailId" [(ngModel)]="model.workEmailId"
+											 placeholder="name@email.com" name="workEmailId" #workEmailId="ngModel" emailValidator>
+											<span [ngClass]="{'glyphicon glyphicon-ok form-control-feedback':(workEmailId.valid && workEmailId.dirty)}"></span>
+											<span [ngClass]="{'glyphicon glyphicon-remove form-control-feedback':(workEmailId.invalid && workEmailId.dirty)}"></span>
+										</div>
+										<small [hidden]="workEmailId.valid || (workEmailId.pristine )" class="text-danger">
+                               {{configMsg?.email}}  <!--This is a required field or Enter in abc@xyz.com format -->
+                                </small>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-4 col-lg-4 col-sm-4 has-min-height-106">
+							<label for="housenum" class="form-label">{{ 'employerDetails.officeLandLine' | translate }}</label>
+							<input placeholder="Office land line" class="form-control txtbox" id="officeLandLine" name="officeLandLine" type="number"
+							 [(ngModel)]="model.officeLandLine">
+						</div>
+						<div class="col-md-4 col-sm-4 has-min-height-106">
+							<div class="form-group">
+								<label for="housenum" class="form-label">{{'employerDetails.UNIT/HOUSE_NO'|translate }}</label>
+								<div class="input-group">
+									<span class="input-group-addon"> <img class="custom-glyphicon" src="/assets/images/Unit-House.png"></span>
+									<input type="text" required class="form-control txtbox" id="buildingNo" [(ngModel)]="model.buildingNo" name="buildingNo"
+									 #buildingNo="ngModel">
+								</div>
+							</div>
+						</div>
+						<div class="col-md-8 col-sm-8 has-min-height-106">
+							<div class="form-group">
+								<label for="homeLookup" class="form-label">{{'employerDetails.WORK_ADDRESS'|translate }}</label>
+								<div id="automaticLookUp">
+									<!-- ////////////////////// -->
+									<div class="input-group">
+										<span class="input-group-addon"> <img class="custom-glyphicon" src="/assets/images/Location.png"></span>
+
+										<input type="text" [(ngModel)]="model.workaddress" [options]='options' (setAddress)="model.workaddress=$event.formatted_address"
+										 (street_number)='model.W_streetnum=$event' (street)='model.W_streetname=$event' (state)='model.W_state=$event'
+										 (postal_code)='model.W_postcode=$event' id="autocomplete" name="workaddress" #workaddress="ngModel" class="form-control txtbox"
+										 [disabled]="no_address_found_flag=='Y' && !showCustomAddr" [required]="no_address_found_flag=='N'" ng2-google-place-autocomplete
+										/>
+									</div>
+									<div *ngIf="!model.postcode">{{'PERSONALCONTACTINFO.ADDRESS_ERROR_MSG'|translate }}<a href="JavaScript:void(0);" (click)="showCustomAddressFields()">(Click here)</a>
+										<!--value="{{model.housenum}} {{model.streetnum}} {{model.streetname}} {{model.streettype}} {{model.suburb}} {{model.postcode}} {{model.state}}"-->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div *ngIf="!showCustomAddr">
+					<div class="form-group has-back-lookup">
+						<!--<div class="row">
+                            <div class="col-md-12">
+                                <label for="homeLookup" class="form-label">Street address lookup </label>
+                            </div>
+                        </div>-->
+						<div class="row">
+							<!--<div class="col-md-4 col-sm-4 has-min-height-106">
+                                    <div class="form-group">
+                                       <label for="housenum" class="form-label">Unit/House No. </label>
+                                       <input type="text" class="form-control txtbox" id="housenum"  [(ngModel)]="model.housenum"  name="housenum" #housenum="ngModel">
+                                    </div>
+                                 </div>-->
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="streetnum" class="form-label">{{'PERSONALCONTACTINFO.STREET_NUMBER'|translate }}</label>
+									<input type="text" class="form-control txtbox" id="streetnum" [(ngModel)]="model.streetnum" name="streetnum" #streetnum="ngModel">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="streetname" class="form-label">{{'PERSONALCONTACTINFO.STREET_NAME'|translate }}</label>
+									<input type="text" class="form-control txtbox" id="streetname" [(ngModel)]="model.streetname" name="streetname" #streetname="ngModel">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="streettype" class="form-label">{{'PERSONALCONTACTINFO.STREET_TYPE'|translate }}</label>
+									<select class="form-control txtbox" id="streettype" [(ngModel)]="model.streettype" name="streettype" #streettype="ngModel">
+                                          <option value="0" >Select</option>
+                                          <option *ngFor="let details of street">
+                                                  {{details}}
+                                       </option>
+                                       </select>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="suburb" class="form-label">{{'PERSONALCONTACTINFO.SUBURB'|translate }}</label>
+									<input type="text" class="form-control txtbox" id="suburb" [(ngModel)]="model.suburb" name="suburb" #suburb="ngModel">
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="state" class="form-label">{{'PERSONALCONTACTINFO.STATE'|translate }}</label>
+									<select class="form-control txtbox" id="state" [(ngModel)]="model.state" name="state" #state="ngModel">
+                                         <option value="0" >Select</option>
+                                         <option *ngFor="let details of state_drop">
+                                                  {{details}}
+                                       </option>
+                                       </select>
+								</div>
+							</div>
+							<div class="col-md-4 col-sm-4 has-min-height-106">
+								<div class="form-group">
+									<label for="postcode" class="form-label">{{'PERSONALCONTACTINFO.POSTCODE'|translate }}</label>
+									<input type="text" class="form-control txtbox" id="postcode" [(ngModel)]="model.postcode" name="postcode" #postcode="ngModel">
+								</div>
+							</div>
+						</div>
+						<div class="back-to-auto">
+							<a href="JavaScript:void(0);" (click)="hideaddress()"> <img src="/assets/images/back_icon.svg" alt="back_icon"> Back to quick search </a>
+						</div>
+					</div>
+				</div>
+				<!--<div class="checkbox" style="margin-bottom:10px !important;">
+                    <input id="crossSellCheckBtn" class="styled" type="checkbox" [(ngModel)]="isCrossSell" name="crossSell">
+                    <label for="crossSellCheckBtn">{{crossSellDisplaytext}}</label>
+                </div>-->
+				<div *ngIf="model.isAadhar" class="row">
+					<div class="existing-member-login">
+						<div class="info-alert  center-msg">
+							<div class="alert-msg">{{'PERSONALCONTACTINFO.ALERT_MSG'|translate }}
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div class="form-btn-wrapper">
+				<a tabindex="0" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" (click)="moveBack()"> </a>
+				<!--<a tabindex="0" [routerLink]="['/PersonalBasicInfo']" class="btn btn-icon-back">  <img src="/assets/images/back-icon.svg" alt="back-icon"> </a>-->
+				<!--<a tabindex="0" class="btn btn-form-primary ladda-button" data-style="expand-right" id="contactInfoSubmit"><span class="ladda-label">CONTINUE</span></a>-->
+				<button type="submit" tabindex="0" class="btn btn-form-primary ladda-button" data-dismiss="modal" [ladda]="isLoading" data-style="expand-right"
+				 [disabled]="!(!(model.paddress==null ||model.paddress=='') || !model.postal_home_address_flag)" data-spinner-color="white"><span class="ladda-label">{{'PERSONALCONTACTINFO.SAVE&CONTINUE_BUTTON'|translate }}</span></button>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- wrapper -->

@@ -1,0 +1,192 @@
+<div class="contact-info" data-aos="fade-up">
+    <div class="container container-custom-upload-docs">
+        <form ngSubmit="onSubmit()">
+            <div class="row">
+                <div class="col-md-5 custom-upload-border">
+                    <div class="row">
+                        <h4 class="form-heading" style="float:left;">{{'UPLOAD_DOCS.ID_PROOF' | translate }}
+                            <span [ngClass]="{'glyphicon glyphicon-ok custom-upload-flag text-success':!idFlag}"></span>
+                            <span [ngClass]="{'glyphicon glyphicon-remove custom-upload-flag text-danger':idFlag}"></span>
+                        </h4>
+
+                    </div>
+                    <!--<div class="row ">
+                        <div class="row col-md-8 col-sm-8 ">
+                            <img *ngIf="model.is_aadhaar && model.postal_home_address_flag" style="width:100%;margin-bottom:10px;height:190px;" src="{{baseUrl}}/{{model.uploadLocation.aadhaar}}">
+                            <div *ngFor="let info of uploadInfoID; let i=index">
+
+                                <div class="custom-dropzone">
+                                    <a title="Close" id="{{info}}" class="pull-right dropbox-remove" *ngIf="(uploadInfoID.length > 1 || model.is_aadhaar) && (i+1) == uploadInfoID.length " href="javascript:void(0);" (click)="removeDropBox1(info)"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+                                    <dropzone (removedfile)="removeUploadedId($event)" (addedfile)="addedId()" (success)="successUpload1($event)" [config]="config" [message]="uploadIdMsg">
+
+                                    </dropzone><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="addAnotherDoc1" class="row col-md-8 col-sm-8">
+                            <a (click)="addRow1() " href="JavaScript:void(0); " class="pull-right custom-add-row "><span class="glyphicon glyphicon-plus-sign "></span> {{'UPLOAD_DOCS.ADD_DOC' | translate}}</a>
+                        </div>
+                    </div><br>-->
+                    <id-proof [isRouteChange]="isRouteChange" (idFlagChange)="changeIdFlag($event)"></id-proof><br>
+                    <div class="row ">
+                        <dl>
+                            <dd><label class="form-label">{{'UPLOAD_DOCS.SUPPORTED_DOCS' | translate}}</label></dd>
+                            <dd [hidden]="model.is_aadhaar" class="custom-desc-item ">* {{'UPLOAD_DOCS.AADHAAR' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.PAN' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.VOTER_ID' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.PASSPORT' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.RATION' | translate}}</dd>
+                        </dl>
+                    </div>
+                    <div *ngIf="this.model.is_aadhaar && this.model.postal_home_address_flag;else falsyTemplate" style="margin-bottom:20px;width: 256px;">
+                        <div class="existing-member-login ">
+                            <div class="info-alert center-msg ">
+                                <div class="alert-msg "><small>{{'UPLOAD_DOCS.INFO_AADHAAR_MSG' | translate}}</small>
+                                </div>
+                                <div class="clearfix "></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ng-template #falsyTemplate>
+                        <div style="margin-bottom:20px;width: 290px;">
+                            <div class="existing-member-login ">
+                                <div class="info-alert center-msg ">
+                                    <div class="alert-msg "><small>{{'UPLOAD_DOCS.INFO_ID_MESSAGE' | translate}}</small>
+                                    </div>
+                                    <div class="clearfix "></div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                </div>
+                <hr class="custom-or-hr ">
+                <div class="col-md-5 col-md-offset-1 ">
+
+                    <div class="row">
+                        <h4 class="form-heading" style="float:left;">{{'UPLOAD_DOCS.ADDRESS_PROOF' | translate}}
+                            <span [ngClass]="{'glyphicon glyphicon-ok custom-upload-flag text-success':!addrFlag}"></span>
+                            <span [ngClass]="{'glyphicon glyphicon-remove custom-upload-flag text-danger':addrFlag}"></span>
+                        </h4>
+
+                    </div>
+                    <!--<div class="row">
+                        <div class="row col-md-8 col-sm-8">
+
+                            <div *ngFor="let aInfo of uploadInfoAddr;let j =index">
+                                <div class="custom-dropzone">
+                                    <a title="Close" id="{{aInfo}}" class="pull-right dropbox-remove" *ngIf="uploadInfoAddr.length > 1 && (j+1) == uploadInfoAddr.length" href="javascript:void(0);" (click)="removeDropBox2(aInfo)"><span class="glyphicon glyphicon-remove text-danger"></span></a>
+                                    <dropzone (removedfile)="removeUploadedAddr($event)" (addedfile)="addedAddr()" (success)="successUpload2($event)" [config]="config " [message]="uploadAddrMsg"></dropzone><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="addAnotherDoc2" class="row col-md-8 col-sm-8 ">
+                            <a (click)="addRow2() " href="JavaScript:void(0); " class="pull-right custom-add-row "><span class="glyphicon glyphicon-plus-sign "></span>{{'UPLOAD_DOCS.ADD_DOC' | translate}}</a>
+                        </div>
+                    </div><br>-->
+                    <address-proof [isRouteChange]="isRouteChange" (addrFlagChange)="changeAddrFlag($event)"></address-proof><br>
+                    <div class="row">
+
+                        <dl>
+                            <dd><label class="form-label">{{'UPLOAD_DOCS.SUPPORTED_DOCS' | translate}}</label></dd>
+                            <dd [hidden]="model.is_aadhaar" class="custom-desc-item ">* {{'UPLOAD_DOCS.AADHAAR' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.PAN' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.VOTER_ID' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.PASSPORT' | translate}}</dd>
+                            <dd class="custom-desc-item ">* {{'UPLOAD_DOCS.RATION' | translate}}</dd>
+                        </dl>
+                    </div>
+                    <div style="margin-bottom:20px;width: 264px;">
+                        <div class="existing-member-login ">
+                            <div class="info-alert center-msg ">
+                                <div class="alert-msg "><small>{{'UPLOAD_DOCS.INFO_ADDRESS_MSG' | translate}}</small>
+                                </div>
+                                <div class="clearfix "></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div><br>
+
+
+
+
+            <br>
+            <div class="row col-md-4 col-md-offset-3 ">
+                <a tabindex="-1" (click)="moveBack()" class="btn btn-icon-back"> <img src="/assets/images/back-icon.svg" alt="back-icon" tabindex="0"> </a>
+                <button [disabled]="idFlag || addrFlag" type="button" (click)="onProceed()" tabindex="0 " [ladda]="false" data-style="expand-right" data-spinner-color="white " class="btn btn-form-primary "><span class="ladda-label ">{{'UPLOAD_DOCS.PROCEED' | translate}}</span></button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<div id="success" class="modal fade" role="dialog " data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-pop matching-customer-details ">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="success-modal">
+                    <button type="button" class="close" data-dismiss="modal" [routerLink]="[ '/home']" (click)="clear()"><img src="/assets/images/close.svg " alt=" "></button>
+                    <div class="center-content ">
+                        <span class="info-icon successicon "><img src="/assets/images/success.svg " alt=" "></span>
+                        <h2>{{'SUCCESS_MODAL.SUCCESS' | translate}}</h2>
+                        <h4>{{'SUCCESS_MODAL.SETUP_MSG' | translate}}</h4>
+                        <div class="customer-details">
+                            <div class="details-label">
+                                <p class="cust-id ">{{'SUCCESS_MODAL.CUST_ID' | translate}}</p>
+                            </div>
+                            <div class="sybmol">
+                                <p class="cust-id"> :</p>
+                            </div>
+                            <div class="cus-details-value">
+                                <p class="cust-id"><strong>345098790</strong></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="customer-details">
+                            <div class="details-label">
+                                <p class="bsb ">{{'SUCCESS_MODAL.IFSC_CODE' | translate}}</p>
+                            </div>
+                            <div class="sybmol">
+                                <p class="bsb"> :</p>
+                            </div>
+                            <div class="cus-details-value">
+                                <p class="bsb"><strong>SBIN1234</strong></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="customer-details">
+                            <div class="details-label">
+                                <p class="act-no">{{'SUCCESS_MODAL.ACC_NUMBER' | translate}}</p>
+                            </div>
+                            <div class="sybmol">
+                                <p class="act-no"> :</p>
+                            </div>
+                            <div class="cus-details-value">
+                                <p class="act-no"><strong>123456989797</strong></p>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="existing-member-login">
+                            <div class="info-alert center-msg">
+                                <div class="alert-msg"> {{'INFO_MESSAGE.INF_003' | translate}}
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <!--<p class="continue-qstn ">Do you want to continue with Internet Banking registration
+            </p>-->
+                        <a class="regbtn" data-dismiss="modal" (click)="clear()">{{'SUCCESS_MODAL.HOME' | translate}}</a>
+                        <a (click)="moveForward()" class="regbtn" data-dismiss="modal">{{'SUCCESS_MODAL.REGISTER_MSG' | translate}}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

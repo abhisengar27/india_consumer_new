@@ -1,0 +1,345 @@
+<oao-header></oao-header>
+<section class="banner">
+    <div class="banner-text">
+        <h1>{{ 'HOME.TITLE' | translate }}</h1>
+        <h2>{{ 'HOME.TITLE2' | translate }}</h2>
+        <h6>{{ 'HOME.SUBTITLE' | translate }}</h6>
+    </div>
+</section>
+<!-- Page Content -->
+<div class="page-content">
+    <div class="container">
+        <!--oao-panel  -->
+        <div class="oao-panel">
+            <div class="panel ">
+                <!--panel-heading  -->
+                <div class="panel-heading">
+                    <div class="panel-tilte-wraper">
+                        <span class="panel-icon-circle">
+                           <img src="/assets/images/savings_icon.svg" alt="savings_icon">
+                           </span>
+                        <span class="panel-title">{{ 'HOME.Account_type_1' | translate }}</span>
+                    </div>
+                    <div class="panel-heading-btn">
+                        <a (click)="setModalType('BNA')" class="btn btn-apply" data-toggle="modal">{{ 'HOME.Account_type_1_button' | translate }}</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--//panel-heading  -->
+                <!--panel-body  -->
+                <div class="panel-body">
+                    <h6>{{ 'HOME.Account_type_1_Title_1' | translate }}</h6>
+                    <h5 class="interest">{{ 'HOME.Account_type_1_Title_2' | translate }}</h5>
+                    <h5>{{ 'HOME.Account_type_1_Title_3' | translate }}</h5>
+                    <div class="category-description">
+                        <p>{{ 'HOME.Account_type_1_Sub_Title_1' | translate }}</p>
+                    </div>
+                </div>
+                <!--//panel-body  -->
+            </div>
+        </div>
+        <!--/savings Account -->
+
+        <!--Salary Account -->
+        <div class="oao-panel">
+            <div class="panel ">
+                <!--panel-heading  -->
+                <div class="panel-heading">
+                    <div class="panel-tilte-wraper">
+                        <span class="panel-icon-circle">
+                           <img src="/assets/images/salary.svg" alt="savings_icon">
+                           </span>
+                        <span class="panel-title">{{ 'HOME.Account_type_2' | translate }}</span>
+                    </div>
+                    <div class="panel-heading-btn">
+                        <a (click)="setModalType('SAL1')" class="btn btn-apply" data-toggle="modal">{{ 'HOME.Account_type_1_button' | translate }}</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <!--//panel-heading  -->
+                <!--panel-body  -->
+                <div class="panel-body">
+                    <h6>{{ 'HOME.Account_type_1_Title_1' | translate }}</h6>
+                    <h5 class="interest">{{ 'HOME.Account_type_1_Title_2' | translate }}</h5>
+                    <h5>{{ 'HOME.Account_type_1_Title_3' | translate }}</h5>
+                    <div class="category-description">
+                        <p>{{ 'HOME.Account_type_1_Sub_Title_1' | translate }}</p>
+                    </div>
+                </div>
+                <!--//panel-body  -->
+            </div>
+        </div>
+        <!--/Salary Account -->
+
+        <!--Vehicle Loan -->
+		<div class="oao-panel">
+			<div class="panel ">
+				<!--panel-heading  -->
+				<div class="panel-heading">
+					<div class="panel-tilte-wraper">
+						<span class="panel-icon-circle">
+                           <img src="/assets/images/VL1.svg" alt="savings_icon">
+                           </span>
+						<span class="panel-title">{{ 'HOME.Account_type_3' | translate }}</span>
+					</div>
+					<div class="panel-heading-btn">
+                        <!--<a [routerLink]="['/vehicleLoan']" class="btn btn-apply" data-toggle="modal" style="margin-right: 25px;">{{ 'HOME.Account_type_3_button' | translate }}</a>-->
+                        <a (click)="setModalType('VL1')"  class="btn btn-apply" data-toggle="modal">{{ 'HOME.Account_type_1_button' | translate }}</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<!--//panel-heading  -->
+				<!--panel-body  -->
+				<div class="panel-body">
+					<h6>{{ 'HOME.Account_type_1_Title_1' | translate }}</h6>
+					<h5 class="interest">{{ 'HOME.Account_type_1_Title_2' | translate }}</h5>
+					<h5>{{ 'HOME.Account_type_1_Title_3' | translate }}</h5>
+					<div class="category-description">
+						<p>{{ 'HOME.Account_type_1_Sub_Title_1' | translate }}</p>
+					</div>
+				</div>
+				<!--//panel-body  -->
+			</div>
+		</div>
+		<!--/Vehicle Loan -->
+
+        <!--//oao-panel  -->
+
+
+    </div>
+    <!-- /.container -->
+</div>
+<!-- //Page Content -->
+<!-- data toggle-->
+<div id="savingsaccount-modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-pop ">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" (click)="setFalse()"><img src="/assets/images/close.svg" alt=""></button>
+                <div class="center-content">
+                    <span class="savings-act-icon"><img src="/assets/images/{{img}}.svg" alt=""></span>
+                    <h2>{{ 'HOME_MODAL.Account_type_selection' | translate }}</h2>
+                    <div class="modal-pop-footer">
+                        <p>{{ 'HOME_MODAL.T&C' | translate }}</p>
+                        <form #f="ngForm">
+                            <div class="term-sondition">
+                                <div class="checkbox">
+                                    <input id="aus_citizen" class="styled term" type="checkbox" [(ngModel)]="modal.aus_citizen" name="aus_citizen" #aus_citizen="ngModel" [checked]="checked"> <label class="fonts" for="aus_citizen">{{ 'HOME_MODAL.check_box_1' | translate }}</label>                                    <br/>
+                                </div>
+                                <div class="checkbox">
+                                    <input id="age_test" class="styled term" type="checkbox" [(ngModel)]="modal.age_test" name="age_test" #age_test="ngModel" [checked]="checked"><label class="fonts" for="age_test">{{ 'HOME_MODAL.check_box_2' | translate }}</label>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="row" id="userTypeRow">
+
+                    <div class="existing">
+                        <h4>{{ 'HOME_MODAL.text_left' | translate }}</h4>
+                        <p>{{ 'HOME_MODAL.sub_text_left' | translate }}</p>
+                        <input [disabled]="!(modal.age_test && modal.aus_citizen)" type="submit" class="btn btn-default" (click)="loginFlag()" href="" [routerLink]="['/login']" data-dismiss="modal" value="{{ 'HOME_MODAL.button_left' | translate }}" />
+                    </div>
+                    <hr class="visible-xs">
+                    <div clss="" id="or">
+                        <p>or</p>
+                    </div>
+                    <div class="new">
+                        <h4>{{ 'HOME_MODAL.text_right' | translate }}</h4>
+                        <p>{{ 'HOME_MODAL.sub_text_right' | translate }}</p>
+                        <input [disabled]="!(modal.age_test && modal.aus_citizen)" type="submit" class="btn btn-default" data-dismiss="modal" [routerLink]="['/completeInformation']" value="{{ 'HOME_MODAL.button_right' | translate }}" class="btn btn-default">
+                    </div>
+
+                </div>
+            </div>
+            <!--content body -->
+        </div>
+    </div>
+</div>
+<!--// data toggle-->
+
+
+
+
+
+<!--chandan-->
+<div id="not_eligible-modal" class="modal fade " role="dialog">
+    <div class="modal-dialog modal-pop matching-customer-details">
+        <!-- Modal content-->
+        <div class="modal-content ">
+            <div class="modal-body">
+                <div class="matching-customer-des">
+                    <button type="button" class="close address-info" (click)="setFalse()" data-dismiss="modal"><img src="/assets/images/close.svg" alt=""></button>
+                    <div class="center-content">
+                        <span class="info-icon"><img src="/assets/images/info.svg" alt=""></span>
+                        <h2 class="welcome-user"> Hi..{{fName}} </h2>
+                        <!--chandan-->
+                        <div class="existing-member-login">
+                            <div class="error-alert">
+                                <div class="alert alert-danger ">
+                                    <strong>Sorry..!</strong> Your age is below 18 years .You are not eligible to open this account.
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <a [routerLink]="['/home']" (click)="setFalse()" class="btn btn-secondary" data-dismiss="modal">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--chandan-->
+
+<oao-footer></oao-footer>
+
+<!--Resume appn-->
+<div id="resume-modal" class="modal fade" role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-pop ">
+		<!-- Modal content-->
+		<div class="modal-content ">
+			<div class="modal-body">
+				<div class="matching-customer-des">
+					<button type="button" class="close" data-dismiss="modal" (click)="clear()"><img src="/assets/images/close.svg" alt=""></button>
+					<div class="center-content">
+
+						<div *ngIf="ticks==60 && resend==false">
+
+							<h2 *ngIf="jointAppn==false">Resume Application</h2><br/>
+							<h2 *ngIf="jointAppn==true">Complete Joint Application</h2><br/>
+							<form>
+								<div [hidden]="savedApp_v==true || wrongDetails_v==true">
+									<div class="row">
+										<div class="form-group col-md-6 col-sm-6 ">
+											<label for="mobile" class="form-label">Mobile Number </label>
+											<input type="text" class="form-control txtbox" id="mobile" #mobile name="mobile" placeholder="+919980XXXXXX" required>
+										</div>
+										<div class="form-group col-md-6 col-sm-6 ">
+											<label for="dob" class="form-label">Date of birth </label>
+											<!--<md2-datepicker  [(ngModel)]="date_v" name="dob" #dob [required]="isRequired" [disabled]="isDisabled" [openOnFocus]="isOpenOnFocus"
+										 [isOpen]="isOpen" [type]="date" [min]="minDate" [max]="maxDate" [mode]="mode" [container]="container" #dateControl="ngModel">
+										</md2-datepicker>-->
+											<div class="input-group">
+
+												<input type="date" #dob #dateControl="ngModel" class="form-control txtbox" [max]="maxDate" placeholder="MM/DD/YYYY" name="dob"
+												 id="dob" [(ngModel)]="date_v">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-6 col-sm-6 ">
+											<re-captcha required name="myForm" (resolved)="resolved($event)" ngDefaultControl siteKey="6LfM7SAUAAAAAAO9PWgAolnZbUvS8u-UGNWXqzC1">
+											</re-captcha>
+										</div>
+									</div>
+									<div class="row">
+										<div class="form-group col-md-4 col-sm-6">
+											<button [disabled]="!myForm" type="submit" (click)="onSearch(mobile.value)" class="btn btn-default btn-login ladda-button"
+											 data-style="expand-right" id="searchSubmit"><span class="ladda-label" name="serchSubmit"  >Send OTP</span></button>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+								<h4 [hidden]="wrongDetails_v==false" class="text-danger">
+                                {{configMsg?.wrongDetails}} <!--This is a required field and Can contain letters and apostrophe-->
+                                </h4>
+								<h4 [hidden]="savedApp_v==false" class="text-danger">
+                                {{configMsg?.savedApplication}} <!--This is a required field and Can contain letters and apostrophe-->
+                                </h4>
+								</div>
+								<!--<div class="row">
+										<div class="form-group col-md-4 col-sm-6" [hidden]="savedApp_v==false && wrongDetails_v==false">
+											<button  type="button" (click)="clearError()" class="btn btn-default btn-login " id="clearError"><span class="ladda-label" name="clearError"  >Back</span></button>
+										</div>
+									</div>-->
+							</form>
+
+						</div>
+						<div *ngIf="ticks<60 || resend==true">
+							<h5>Enter OTP</h5>
+							<form class="form-inline">
+								<div class="form-group">
+									<input type="text" class="form-control txtbox" id="verifyOtp" #verifyOtp name="verifyOtp" placeholder="Enter OTP" required>
+								</div>
+								<div class="form-group">
+
+									<button data-dismiss="modal" type="submit" (click)="onVerify(verifyOtp.value)" class="btn btn-default btn-login ladda-button"
+									 data-style="expand-right" id="verifySubmit"><span class="ladda-label" name="verifySubmit">Verify OTP</span></button>
+
+								</div>
+
+							</form>
+						
+						<input type="hidden" class="form-control txtbox" id="app_id" #app_id value=appRef.value name="app_id">
+						<p *ngIf="resend==false">You can resend OTP in {{ticks}}</p>
+						<p *ngIf="resend==true">You can<a (click)="onSearch(model.application_id)"> resend </a>OTP in {{ticks}}</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--Resume appn-->
+
+<div id="resume-modal2" class="modal fade " role="dialog" data-backdrop="static" data-keyboard="false">
+	<div class="modal-dialog modal-pop matching-customer-details">
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-body" id="custom-resume-modal-scroll">
+				<div class="matching-customer-des">
+					<button type="button" class="close address-info" (click)="clear()" data-dismiss="modal"><img src="/assets/images/close.svg" alt=""></button>
+					<div class="center-content">
+						<br/>
+
+						<!--chandan-->
+						<div>
+							<div class="row">
+								<div class="row col-md-offset-3">
+									<div class="col-lg-10 col-md-8 col-sm-6 has-min-height-106">
+										<!--<label for="fname" class="form-label">Applications</label>-->
+										<div class=" table-responsive ">
+
+											<div *ngFor="let item of modelArray; let i=index">
+												<table class="table table-bordered card-resume">
+													<thead>
+													</thead>
+													<tbody>
+														<tr>
+														<td align="left"><span>
+
+                           								   <h3>	<a class="btn bg-yellow btn-rounded btn-icon ">
+                        									      <i class="material-icons">person</i></a>
+																  {{item.fname}}</h3> <span class="fonts_size">{{item.product_name}}
+															<br/> {{item.application_id}} <br/>
+															<p>Applied on {{item.cre_time | date}}<input [disabled]="!(item.application_status=='SAV' || item.application_status=='INC' )" (click)="proceed(i)" type="button" class="btn btn-default" value="Resume"
+															 class="btn btn-default pull-right" data-dismiss="modal" autofocus></p></span>
+															</span>
+
+
+
+															<!--<div class="panel-heading-btn">
+																<a [disabled]="!(item.application_status=='SAV')" (click)="proceed(i)" class="btn btn-apply">Resume</a>
+															</div>-->
+
+														</td>
+											</tr>
+											</tbody>
+											</table>
+											</div>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
