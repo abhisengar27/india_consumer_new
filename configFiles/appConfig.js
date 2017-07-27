@@ -14,7 +14,7 @@ module.exports = {
     },
     "OUTLOOK_365": {
         creds: {
-            redirectUrl: 'https://oaoindiastackdev.herokuapp.com/home',
+            redirectUrl: 'https://indiaconsumer.herokuapp.com/',
             clientID: 'e59d6bdd-3cd6-4886-8432-9d288d945846',
             clientSecret: 'kFs08rxjVrDGHmFWaCCJvzb',
             identityMetadata: 'https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration',
